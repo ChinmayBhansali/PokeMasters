@@ -23,9 +23,3 @@ If possible, we would give you a nice map depending upon how much we can build t
 Also, you will be able to save and reload your gameplay, and also create new ones or delete previous ones.
 
 We hope you enjoy this game!
-
-
-
-
-
-Reason why I chose this as my project: When I was in grade 8
