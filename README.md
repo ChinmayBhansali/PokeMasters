@@ -8,9 +8,9 @@ That is when this idea of notebook based Pokémon game struck into my mind.
 I played this game with my dorm mates a lot.
 I have the full version of this game at my home but in a notebook.
 I plan on converting that physical game into a computer game and this project can help me initiate it.
-It is originally a multiplayer (and hence the name PokéMaster"s") offline game. But for this project, I am only making a single-player game.
+It is originally a multiplayer (and hence the name PokéMaster***s***) offline game. But for this project, I am only making a single-player game.
 
-This is a role playing game (RPG for short) especially for Pokémon fans (and also for anyone who is interested in games), where you thrive to become the **PokéMaster** by exploring the Pokémon universe and bonding with Pokémon and other Pokémon Trainers.
+This is a role playing game (RPG for short) especially for Pokémon fans (and also for anyone who is interested in games), where you thrive to become the **PokéMaster** by exploring the Pokémon universe and bonding with Pokémon.
 There is a certain number of Pokémon you can always carry with you in their *Pokéballs*.
 In this game, you can have, at most, 6 Pokémon at a certain time with you.
 The more you spend time with your Pokémon and the more you fight alongside them, the more they bond with you and the faster they (and *you* too) grow.
@@ -30,7 +30,7 @@ In this game:
 - as a player in a battle, I want to be able to attack with my active Pokémon
 - as a player in a battle, I want to be able to switch my active Pokémon with one of my benched Pokémon
 - as a player in a battle, I want to be able to escape from the battle
-- as a player in a battle, I want to be able to use my bag (in this demo, only Pokéballs)
+- as a player in a battle, I want to be able to use my bag (in this version, only Pokéballs)
 - as a player, I want to be able to level up my Pokémon
 - as a player, I want to be able to heal my Pokémon at PokéCenter
 - as a player, I want to be able to save my game progress to continue again
