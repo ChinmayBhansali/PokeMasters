@@ -1,16 +1,16 @@
-# My Personal Project
+# PokéMasters
 
-## PokéMasters: The Unreal World of Pokémon
+## The Unreal World of Pokémon
 
-For this project, I am planning to make a small version of the game I intend to fully develop after this term.
-I made this game in grade 8 when I was admitted into a boarding school, and there were no electronic devices allowed in the hostel.
+For this project, I plan on building a small version of the game I intend to fully develop after this term.
+I made the original (physical) version of this game in grade 8 when I was admitted into a boarding school and there were no electronic devices allowed in the hostel.
 That is when this idea of notebook based Pokémon game struck into my mind.
 I played this game with my dorm mates a lot.
-I have the full version of this game at my home but in a notebook.
+I have the full version of this game at home but in a notebook.
 I plan on converting that physical game into a computer game and this project can help me initiate it.
-It is originally a multiplayer (and hence the name PokéMaster***s***) offline game. But for this project, I am only making a single-player game.
+It is originally a multiplayer  (hence the name PokéMaster***s***) offline game. But, for this project, I am only making a single-player game.
 
-This is a role playing game (RPG for short) especially for Pokémon fans (and also for anyone who is interested in games), where you thrive to become the **PokéMaster** by exploring the Pokémon universe and bonding with Pokémon.
+This is a role playing game (RPG for short) especially for Pokémon fans (and also for anyone who is interested in games), where you thrive to become the **PokéMaster**, by exploring the Pokémon universe and bonding with Pokémon.
 There is a certain number of Pokémon you can always carry with you in their *Pokéballs*.
 In this game, you can have, at most, 6 Pokémon at a certain time with you.
 The more you spend time with your Pokémon and the more you fight alongside them, the more they bond with you and the faster they (and *you* too) grow.
