@@ -17,13 +17,12 @@ The more you spend time with your Pokémon and the more you fight alongside them
 You can walk on the map, find new Pokémon, fight with them, catch them, visit the *PokéCenter*, etc.
 
 But since this is not the full version of the game, there are limitations to what you can do in this game.
-For example, your gameplay to a certain number of Pokémon, and your Pokémon will not evolve.
+For example, your gameplay to a certain number of Pokémon, and your Pokémon will not level up.
 Also, you will be able to save and reload your gameplay, and also create new ones or delete previous ones.
 
 We hope you enjoy this game!
 
 In this game:
-- as a player, I want to be able to move through the different areas of the map
 - as a player, I want to be able to choose my starter Pokémon
 - as a player, I want to be able to catch Pokémon
 - as a player, I want to be able to battle other Pokémon with my own
@@ -31,6 +30,5 @@ In this game:
 - as a player in a battle, I want to be able to switch my active Pokémon with one of my benched Pokémon
 - as a player in a battle, I want to be able to escape from the battle
 - as a player in a battle, I want to be able to use my bag (in this version, only Pokéballs)
-- as a player, I want to be able to level up my Pokémon
 - as a player, I want to be able to heal my Pokémon at PokéCenter
-- as a player, I want to be able to save my game progress to continue again
+- as a player, I want to be able to quit my game
