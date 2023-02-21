@@ -1,6 +1,5 @@
 package model;
 
-import model.pokemon.Bulbasaur;
 import model.pokemon.Pikachu;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,11 +7,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PokemonTest {
     private Pokemon p1;
-    private Pokemon p2;
 
     @BeforeEach
     void setup() {
         p1 = new Pikachu(4);
+    }
+
+    @Test
+    void constructorTest() {
+        assertEquals("Pikachu", p1.getName());
+        assertEquals(2, p1.getAttacks().size());
     }
 
     @Test
