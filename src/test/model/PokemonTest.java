@@ -81,6 +81,7 @@ public class PokemonTest {
         for (Pokemon p : starterPokemon) {
             assertEquals(5, p.getLevel());
         }
+        assertEquals(2, p1.getAttacks().size());
     }
 
     @Test
