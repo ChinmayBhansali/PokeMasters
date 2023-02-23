@@ -18,7 +18,6 @@ public class Battle {
     public Battle(Player player, Pokemon wildPokemon) {
         setPokemonNumber();
         randomIndexList = new ArrayList<>();
-        input = new Scanner(System.in);
         int i = 0;
         for (Attack a : wildPokemon.getAttacks()) {
             randomIndexList.add(i);
@@ -27,10 +26,12 @@ public class Battle {
         battle(player, wildPokemon);
     }
 
+    // MODIFIES: randomIndexList
+    // EFFECTS: initiates battle, shuffles randomIndexList
     private void battle(Player player, Pokemon wildPokemon) {
-        while (player.getPlayerPokemon().get(this.pokemonNumber).getHP() > 0 && wildPokemon.getHP() > 0) {
-            System.out.println("Your " + player.getPlayerPokemon().get(this.pokemonNumber).getName() + "'s HP: "
-                    + player.getPlayerPokemon().get(this.pokemonNumber).getHP() + "\n" + wildPokemon.getName()
+        while (player.getPokemon().get(this.pokemonNumber).getHP() > 0 && wildPokemon.getHP() > 0) {
+            System.out.println("Your " + player.getPokemon().get(this.pokemonNumber).getName() + "'s HP: "
+                    + player.getPokemon().get(this.pokemonNumber).getHP() + "\n" + wildPokemon.getName()
                     + "'s HP: " + wildPokemon.getHP());
             giveOptions();
 
@@ -42,8 +43,8 @@ public class Battle {
             } else if (option == 2) {
                 switchPokemon(player);
             } else if (option == 3) {
-                int flag = useBag(player, wildPokemon);
-                if (flag == 1) {
+                int use = useBag(player, wildPokemon);
+                if (use == 1) {
                     break;
                 }
             } else if (option == 4) {
@@ -52,6 +53,7 @@ public class Battle {
         }
     }
 
+    // EFFECTS: prints the options in a battle
     private void giveOptions() {
         System.out.println("1. Attack");
         System.out.println("2. Switch");
@@ -66,17 +68,23 @@ public class Battle {
         }
     }
 
+    // MODIFIES: this.pokemonNumber
+    // EFFECTS: changes the pokemonNumber according to user input
     private void switchPokemon(Player player) {
         int i = 1;
-        for (Pokemon p : player.getPlayerPokemon()) {
+        for (Pokemon p : player.getPokemon()) {
             System.out.println(i + ". " + p.getName());
             i++;
         }
         this.pokemonNumber = input.nextInt() - 1;
     }
 
+    // MODIFIES: player.pokeballs and player.pokemon
+    // EFFECTS: if wildPokemon's health is critical, player.usePokeball and wildPokemon is added to player.pokemon
     private int useBag(Player player, Pokemon wildPokemon) {
-        System.out.println("You have " + player.getPokeballs() + " pokeballs left\n" + "1. Use pokeball");
+        System.out.println("1. PokéBalls x" + player.getPokeballs());
+        input.nextInt();
+        System.out.println("1. Use");
         int usePokeball = input.nextInt();
         if (usePokeball == 1) {
             if (wildPokemon.isHealthCritical()) {
@@ -89,67 +97,78 @@ public class Battle {
         return 0;
     }
 
+    // MODIFIES: wildPokemon.HP
+    // EFFECTS: if player.pokemon.get(pokemonNumber).attacks.get(whichAttack).power > wildPokemon.HP then
+    //          wildPokemon.HP -= the attack power, otherwise wildPokemon.HP = 0
     private void playerPokemonAttack(Player player, Pokemon wildPokemon) {
         Scanner input = new Scanner(System.in);
 
         int i = 1;
-        for (Attack a : player.getPlayerPokemon().get(this.pokemonNumber).getAttacks()) {
+        for (Attack a : player.getPokemon().get(this.pokemonNumber).getAttacks()) {
             System.out.println(i + ". " + a.getName());
             i++;
         }
 
         int whichAttack = input.nextInt() - 1;
 
-        System.out.println("Your " + player.getPlayerPokemon().get(pokemonNumber).getName() + " used "
-                + player.getPlayerPokemon().get(pokemonNumber).getAttacks().get(whichAttack).getName());
+        System.out.println("Your " + player.getPokemon().get(pokemonNumber).getName() + " used "
+                + player.getPokemon().get(pokemonNumber).getAttacks().get(whichAttack).getName());
 
         if (wildPokemon.getHP()
-                <=
-                player.getPlayerPokemon().get(this.pokemonNumber).getAttacks().get(whichAttack).getPower()) {
+                <= player.getPokemon().get(this.pokemonNumber).getAttacks().get(whichAttack).getPower()) {
             wildPokemon.reduceHP(wildPokemon.getHP());
-            System.out.println(player.getPlayerPokemon().get(this.pokemonNumber).getName() + " defeated "
+            System.out.println("Your " + player.getPokemon().get(this.pokemonNumber).getName() + " defeated "
                     + wildPokemon.getName());
+            player.addPokeDollars(10 * wildPokemon.getLevel());
         } else {
             wildPokemon.reduceHP(
-                    player.getPlayerPokemon().get(this.pokemonNumber).getAttacks().get(whichAttack).getPower()
+                    player.getPokemon().get(this.pokemonNumber).getAttacks().get(whichAttack).getPower()
             );
-            System.out.println("Your " + player.getPlayerPokemon().get(this.pokemonNumber).getName() + " dealt "
-                    + player.getPlayerPokemon().get(this.pokemonNumber).getAttacks().get(whichAttack).getPower()
+            System.out.println("Your " + player.getPokemon().get(this.pokemonNumber).getName() + " dealt "
+                    + player.getPokemon().get(this.pokemonNumber).getAttacks().get(whichAttack).getPower()
                     + " damage to " + wildPokemon.getName());
         }
     }
 
+    // MODIFIES: player.pokemon.get(pokemonNumber).HP
+    // EFFECTS: if wildPokemon.attack.get(randomIndex).power > player.pokemon.get(pokemonNumber).HP then
+    //          player.pokemon.get(pokemonNumber).HP -= the attack power, otherwise
+    //          player.pokemon.get(pokemonNumber).HP = 0
     private void wildPokemonAttack(Player player, Pokemon wildPokemon) {
         this.randomIndex = this.randomIndexList.get(0);
 
         System.out.println(wildPokemon.getName() + " used " + wildPokemon.getAttacks().get(this.randomIndex).getName());
 
-        if (player.getPlayerPokemon().get(this.pokemonNumber).getHP()
+        if (player.getPokemon().get(this.pokemonNumber).getHP()
                 <=
                 wildPokemon.getAttacks().get(randomIndex).getPower()) {
             System.out.println(wildPokemon.getName() + " dealt "
-                    + player.getPlayerPokemon().get(this.pokemonNumber).getHP() + " damage to your "
-                    + player.getPlayerPokemon().get(this.pokemonNumber).getName());
-            player.getPlayerPokemon().get(this.pokemonNumber).reduceHP(
-                    player.getPlayerPokemon().get(this.pokemonNumber).getHP()
+                    + player.getPokemon().get(this.pokemonNumber).getHP() + " damage to your "
+                    + player.getPokemon().get(this.pokemonNumber).getName());
+            player.getPokemon().get(this.pokemonNumber).reduceHP(
+                    player.getPokemon().get(this.pokemonNumber).getHP()
             );
-            System.out.println("Your " + player.getPlayerPokemon().get(pokemonNumber).getName() + " fainted");
+            System.out.println("Your " + player.getPokemon().get(pokemonNumber).getName() + " fainted");
         } else {
-            player.getPlayerPokemon().get(this.pokemonNumber).reduceHP(
+            player.getPokemon().get(this.pokemonNumber).reduceHP(
                     wildPokemon.getAttacks().get(randomIndex).getPower()
             );
             System.out.println(wildPokemon.getName() + " dealt " + wildPokemon.getAttacks().get(randomIndex).getPower()
-                    + " damage to your " + player.getPlayerPokemon().get(this.pokemonNumber).getName());
+                    + " damage to your " + player.getPokemon().get(this.pokemonNumber).getName());
         }
 
     }
 
+    // MODIFIES: player.pokeballs and player.pokemon
+    // EFFECTS: player.usePokeball and player.pokemon gets wildPokemon
     private void catchPokemon(Player player, Pokemon wildPokemon) {
         player.usePokeball();
-        player.addPokemon(wildPokemon);
         System.out.println(wildPokemon.getName() + " was caught!");
+        player.addPokemon(wildPokemon);
     }
 
+    // MODIFIES: player.pokeballs
+    // EFFECTS: player.usePokeball
     private void catchPokemonFail(Player player, Pokemon wildPokemon) {
         player.usePokeball();
         System.out.println("Failed to catch " + wildPokemon.getName());

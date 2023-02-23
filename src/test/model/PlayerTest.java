@@ -2,6 +2,7 @@ package model;
 
 import model.pokemon.Growlithe;
 import model.pokemon.Pikachu;
+import model.pokemon.Weedle;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,10 +25,10 @@ public class PlayerTest {
 
     @Test
     void addPokemonTest() {
-        assertEquals(0, player.getPlayerPokemon().size());
+        assertEquals(0, player.getPokemon().size());
         player.addPokemon(new Pikachu(8));
         player.addPokemon(new Growlithe(9));
-        assertEquals(2, player.getPlayerPokemon().size());
+        assertEquals(2, player.getPokemon().size());
     }
 
     @Test
@@ -36,5 +37,28 @@ public class PlayerTest {
         assertEquals(10, player.getPokeballs());
         player.usePokeball();
         assertEquals(9, player.getPokeballs());
+    }
+
+    @Test
+    void releasePokemonTest() {
+        player.addPokemon(new Weedle(3));
+        assertEquals(1, player.getPokemon().size());
+        player.releasePokemon(player.getPokemon().get(0));
+        assertEquals(0, player.getPokemon().size());
+    }
+
+    @Test
+    void addPokeDollarsTest() {
+        assertEquals(0, player.getPokeDollars());
+        player.addPokeDollars(300);
+        assertEquals(300, player.getPokeDollars());
+    }
+
+    @Test
+    void deductPokeDollarsTest() {
+        player.addPokeDollars(500);
+        assertEquals(500, player.getPokeDollars());
+        player.deductPokeDollars(200);
+        assertEquals(300, player.getPokeDollars());
     }
 }

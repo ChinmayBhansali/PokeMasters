@@ -24,11 +24,12 @@ We hope you enjoy this game!
 
 In this game:
 - as a player, I want to be able to choose my starter Pokémon
-- as a player, I want to be able to catch Pokémon
 - as a player, I want to be able to battle other Pokémon with my own
 - as a player in a battle, I want to be able to attack with my active Pokémon
 - as a player in a battle, I want to be able to switch my active Pokémon with one of my benched Pokémon
 - as a player in a battle, I want to be able to escape from the battle
-- as a player in a battle, I want to be able to use my bag (in this version, only Pokéballs)
+- as a player in a battle, I want to be able to use my bag (in this version, only Pokéballs) to try and catch wild Pokémon
 - as a player, I want to be able to heal my Pokémon at PokéCenter
+- as a player, I want to buy items (in this version, only PokéBalls) at PokéCenter
+- as a player, I want to be able to remove any Pokémon from my Pokémon
 - as a player, I want to be able to quit my game
