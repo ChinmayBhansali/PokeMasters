@@ -41,7 +41,6 @@ public class Battle {
             int option = giveOptions();
 
             if (option == 1) {
-                Collections.shuffle(randomIndexList);
                 attack();
             } else if (option == 2) {
                 switchPokemon();
@@ -112,8 +111,9 @@ public class Battle {
     }
 
     // MODIFIES: wildPokemon
-    // EFFECTS: if player.pokemon.get(pokemonNumber).attacks.get(whichAttack).power > wildPokemon.HP then
-    //          wildPokemon.HP -= the attack power, otherwise wildPokemon.HP = 0
+    // EFFECTS: if player's active pokemon's chosen attack power > wildPokemon's HP then
+    //          wildPokemon's HP reduces by player's pokemon's attack power,
+    //          otherwise wildPokemon's HP = 0
     private void playerPokemonAttack() {
         Scanner input = new Scanner(System.in);
 
@@ -145,10 +145,11 @@ public class Battle {
     }
 
     // MODIFIES: player
-    // EFFECTS: if wildPokemon.attack.get(randomIndex).power > player.pokemon.get(pokemonNumber).HP then
-    //          player.pokemon.get(pokemonNumber).HP -= the attack power, otherwise
-    //          player.pokemon.get(pokemonNumber).HP = 0
+    // EFFECTS: if wildPokemon's random attack's power > player's active pokemon's HP then
+    //          reduces player's active pokemon's HP by the wildPokemon's attack power, otherwise
+    //          player's active pokemon's HP = 0
     private void wildPokemonAttack() {
+        Collections.shuffle(randomIndexList);
         randomIndex = randomIndexList.get(0);
 
         System.out.println(wildPokemon.getName() + " used " + wildPokemon.getAttacks().get(this.randomIndex).getName());

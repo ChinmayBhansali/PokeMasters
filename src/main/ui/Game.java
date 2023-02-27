@@ -107,25 +107,31 @@ public class Game {
         }
     }
 
+    // EFFECTS: buy items
+    private void buyItems() {
+        System.out.println("1. PokéBalls (100 PokéDollars per PokéBall)\n"
+                + "0. Back");
+        int itemNumber = input.nextInt();
+        if (itemNumber == 1) {
+            buyPokeballs();
+        }
+    }
+
     // MODIFIES: player
     // EFFECTS: adds buyPokeballs pokeballs to player's pokeballs if player has sufficient pokedollars and
     //          reduces player's pokeballs by buyPokeballs * 100 if opted
-    private void buyItems() {
-        System.out.println("1. PokéBalls (100 PokéDollars per PokéBall)\n0. Back");
-        int itemNumber = input.nextInt();
-        if (itemNumber == 1) {
-            System.out.println("Your PokéDollars: " + player.getPokeDollars());
-            System.out.println("1. Continue?");
-            int buy = input.nextInt();
-            if (buy == 1) {
-                System.out.println("Amount: ");
-                int buyPokeballs = input.nextInt();
-                if (buyPokeballs * 100 <= player.getPokeDollars()) {
-                    player.deductPokeDollars(buyPokeballs * 100);
-                    player.addPokeballs(buyPokeballs);
-                } else {
-                    System.err.println("Insufficient PokéDollars!");
-                }
+    private void buyPokeballs() {
+        System.out.println("Your PokéDollars: " + player.getPokeDollars());
+        System.out.println("1. Continue?\n0. Back");
+        int buy = input.nextInt();
+        if (buy == 1) {
+            System.out.println("Amount: ");
+            int buyPokeballs = input.nextInt();
+            if (buyPokeballs * 100 <= player.getPokeDollars()) {
+                player.addPokeballs(buyPokeballs);
+                player.deductPokeDollars(buyPokeballs * 100);
+            } else {
+                System.err.println("Insufficient PokéDollars!");
             }
         }
     }
