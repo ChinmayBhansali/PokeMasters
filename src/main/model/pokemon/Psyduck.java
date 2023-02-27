@@ -11,10 +11,6 @@ import java.util.Arrays;
 public class Psyduck extends Pokemon {
     public Psyduck(int level) {
         super("Psyduck", level);
-    }
-
-    @Override
-    public void setAttacks() {
         this.attacks = new ArrayList<>(Arrays.asList(new Scratch(), new WaterGun(), new Confusion()));
     }
 
@@ -22,9 +18,4 @@ public class Psyduck extends Pokemon {
     public void setHP() {
         this.hp = 50 * this.level;
     }
-
-//    @Override
-//    public void setSpeed() {
-//
-//    }
 }

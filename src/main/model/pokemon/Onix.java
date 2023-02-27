@@ -12,10 +12,6 @@ import java.util.Arrays;
 public class Onix extends Pokemon {
     public Onix(int level) {
         super("Onix", level);
-    }
-
-    @Override
-    public void setAttacks() {
         this.attacks = new ArrayList<>(Arrays.asList(new Bind(), new RockThrow(), new Tackle(), new SmackDown()));
     }
 
@@ -23,9 +19,4 @@ public class Onix extends Pokemon {
     public void setHP() {
         this.hp = 35 * this.level;
     }
-
-//    @Override
-//    public void setSpeed() {
-//
-//    }
 }

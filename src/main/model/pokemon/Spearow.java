@@ -10,10 +10,6 @@ import java.util.Arrays;
 public class Spearow extends Pokemon {
     public Spearow(int level) {
         super("Spearow", level);
-    }
-
-    @Override
-    public void setAttacks() {
         this.attacks = new ArrayList<>(Arrays.asList(new Peck(), new Assurance()));
     }
 
@@ -21,9 +17,4 @@ public class Spearow extends Pokemon {
     public void setHP() {
         this.hp = 40 * this.level;
     }
-
-//    @Override
-//    public void setSpeed() {
-//
-//    }
 }

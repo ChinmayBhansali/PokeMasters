@@ -10,10 +10,6 @@ import java.util.Arrays;
 public class Charmander extends Pokemon {
     public Charmander(int level) {
         super("Charmander", level);
-    }
-
-    @Override
-    public void setAttacks() {
         this.attacks = new ArrayList<>(Arrays.asList(new Scratch(), new Ember()));
     }
 
@@ -21,9 +17,4 @@ public class Charmander extends Pokemon {
     public void setHP() {
         this.hp = 39 * this.level;
     }
-
-//    @Override
-//    public void setSpeed() {
-//
-//    }
 }

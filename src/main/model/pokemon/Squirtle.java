@@ -11,10 +11,6 @@ import java.util.Arrays;
 public class Squirtle extends Pokemon {
     public Squirtle(int level) {
         super("Squirtle", level);
-    }
-
-    @Override
-    public void setAttacks() {
         this.attacks = new ArrayList<>(Arrays.asList(new Tackle(), new WaterGun(), new RapidSpin()));
     }
 
@@ -22,9 +18,4 @@ public class Squirtle extends Pokemon {
     public void setHP() {
         this.hp = 44 * this.level;
     }
-
-//    @Override
-//    public void setSpeed() {
-//
-//    }
 }

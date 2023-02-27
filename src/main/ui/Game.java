@@ -40,14 +40,16 @@ public class Game {
         }
     }
 
-    // EFFECTS: prints direction and movement of player and make a Battle object with player and random pokemon of
-    //          random level
+    // EFFECTS: prints direction and movement of player and creates a Battle with player and random pokemon of random
+    //          level
     private void move() {
         ArrayList<String> directions = new ArrayList<>(Arrays.asList("North", "West", "East", "South"));
         System.out.println("1. North\n" + "2. West\n" + "3. East\n" + "4. South");
         int direction = input.nextInt() - 1;
+
         System.out.println("You moved " + (int) ((Math.random() * 6) + 1) + " steps towards "
                 + directions.get(direction) + ".");
+
         int randomLevel = (int) (Math.random() * 10) + 1;
         ArrayList<Pokemon> allPokemon = new ArrayList<>(Arrays.asList(new Bulbasaur(randomLevel),
                 new Charmander(randomLevel), new Squirtle(randomLevel), new Caterpie(randomLevel),
@@ -56,13 +58,12 @@ public class Game {
                 new Meowth(randomLevel), new Psyduck(randomLevel), new Growlithe(randomLevel),
                 new Slowpoke(randomLevel), new Onix(randomLevel)));
         Collections.shuffle(allPokemon);
-        System.out.println("You encountered a wild " + allPokemon.get(0).getName() + " of level "
-                + allPokemon.get(0).getLevel() + "!");
+
         Battle battle = new Battle(player, allPokemon.get(0));
     }
 
-    // MODIFIES: player.playerPokemon
-    // EFFECTS: sets all of player's pokemon's HP to original HP
+    // MODIFIES: player
+    // EFFECTS: restores player's all pokemon's health or buy items
     private void pokeCenter() {
         System.out.println("1. Restore your Pokémon's health\n2. Buy items\n0. Back");
         int inPokeCenter =  input.nextInt();
@@ -75,8 +76,8 @@ public class Game {
     }
 
     // REQUIRES: player.pokemon.size() > 0
-    // MODIFIES: player.pokemon
-    // EFFECTS: releases chosen pokemon from player.pokemon if opted
+    // MODIFIES: player
+    // EFFECTS: releases chosen pokemon from player's pokemon if opted
     private void yourPokemon() {
         int i = 1;
         for (Pokemon p : player.getPokemon()) {
@@ -84,28 +85,31 @@ public class Game {
             i++;
         }
         System.out.println("0. Back");
-        Pokemon thisPokemon = player.getPokemon().get(input.nextInt() - 1);
-        if (player.getPokemon().contains(thisPokemon)) {
-            System.out.println("1. Release\n0. Back");
-            int pokemonToDo = input.nextInt();
-            if (pokemonToDo == 1) {
-                player.releasePokemon(thisPokemon);
+        int index = input.nextInt() - 1;
+        if (index < player.getPokemon().size() && index >= 0) {
+            Pokemon thisPokemon = player.getPokemon().get(index);
+            if (player.getPokemon().contains(thisPokemon)) {
+                System.out.println("1. Release\n0. Back");
+                int pokemonToDo = input.nextInt();
+                if (pokemonToDo == 1) {
+                    player.releasePokemon(thisPokemon);
+                }
             }
         }
     }
 
-    // MODIFIES: player.pokemon
-    // EFFECTS: restores health of all pokemon in player.pokemon
+    // MODIFIES: player
+    // EFFECTS: sets player's all pokemon's health to default
     private void restorePokemonHealth() {
         for (Pokemon p : player.getPokemon()) {
-            p.restoreHealth();
+            p.setHP();
             System.out.println(p.getName() + "'s HP: " + p.getHP());
         }
     }
 
-    // MODIFIES: player.pokeDollars and player.pokeballs
-    // EFFECTS: adds buyPokeballs pokeballs to player.pokeballs and reduces player.pokeballs by buyPokeballs * 100 if
-    //          opted
+    // MODIFIES: player
+    // EFFECTS: adds buyPokeballs pokeballs to player's pokeballs if player has sufficient pokedollars and
+    //          reduces player's pokeballs by buyPokeballs * 100 if opted
     private void buyItems() {
         System.out.println("1. PokéBalls (100 PokéDollars per PokéBall)\n0. Back");
         int itemNumber = input.nextInt();

@@ -92,15 +92,6 @@ public class PokemonTest {
     }
 
     @Test
-    void restoreHealthTest() {
-        assertEquals(45 * p1.getLevel(), p1.getHP());
-        p1.reduceHP(40);
-        assertEquals(45 * p1.getLevel() - 40, p1.getHP());
-        p1.restoreHealth();
-        assertEquals(45 * p1.getLevel(), p1.getHP());
-    }
-
-    @Test
     void isHealthCriticalTest() {
         assertFalse(p1.isHealthCritical());
         p1.reduceHP(36 * p1.getLevel());

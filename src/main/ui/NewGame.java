@@ -1,11 +1,14 @@
 package ui;
 
 import model.Player;
+import model.Pokemon;
 import model.pokemon.starters.BulbasaurStarter;
 import model.pokemon.starters.CharmanderStarter;
 import model.pokemon.starters.PikachuStarter;
 import model.pokemon.starters.SquirtleStarter;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class NewGame {
@@ -54,7 +57,7 @@ public class NewGame {
         input.nextLine();
     }
 
-    // MODIFIES: player.pokemon
+    // MODIFIES: player
     // EFFECTS: adds the chosen pokemon to player.pokemon
     private void chooseStarter() {
         System.out.println("In order to become a Pokémon Trainer, you need to first have a starter Pokémon.\n"
@@ -65,6 +68,9 @@ public class NewGame {
                 + "Which of these do you want to be your partner in this quest to become the PokéMaster?");
 
         int chooseStarter = input.nextInt();
+
+        ArrayList<Pokemon> starterPokemon = new ArrayList<>(Arrays.asList(new BulbasaurStarter(),
+                new CharmanderStarter(), new SquirtleStarter(), new PikachuStarter()));
 
         if (chooseStarter == 1) {
             System.out.println("You chose Bulbasaur!");

@@ -6,6 +6,7 @@ public class Player {
     private ArrayList<Pokemon> pokemon;
     private int pokeballs;
     private int pokeDollars;
+//    private ArrayList<Pokemon> pokedex;
 
     public Player() {
         this.pokemon = new ArrayList<>();
@@ -13,47 +14,47 @@ public class Player {
         this.pokeDollars = 0;
     }
 
-    // MODIFIES: this.pokeballs
-    // EFFECTS: adds given amount of pokeballs
-    public void addPokeballs(int amount) {
-        this.pokeballs += amount;
-        System.out.println("You received " + amount + " PokéBalls.");
+    // MODIFIES: this
+    // EFFECTS: adds given amount of pokeballs to player's pokeballs
+    public void addPokeballs(int pokeballs) {
+        this.pokeballs += pokeballs;
+        System.out.println("You received " + pokeballs + " PokéBalls.");
     }
 
-    // MODIFIES: this.playerPokemon
+    // MODIFIES: this
     // EFFECTS: adds to given pokemon to the player's pokemon
     public void addPokemon(Pokemon newPokemon) {
         this.pokemon.add(newPokemon);
         System.out.println(newPokemon.getName() + " has been added to your Pokédex.");
     }
 
-    // REQUIRES: this.playerPokemon contains freePokemon
-    // MODIFIES: this.playerPokemon
+    // REQUIRES: this.pokemon contains freePokemon
+    // MODIFIES: this
     // EFFECTS: removes the pokemon from player's pokemon
     public void releasePokemon(Pokemon freePokemon) {
         this.pokemon.remove(freePokemon);
     }
 
     // REQUIRES: this.pokeballs > 0
-    // MODIFIES: this.pokeballs
+    // MODIFIES: this
     // EFFECTS: reduces player's pokeballs by 1
     public void usePokeball() {
         this.pokeballs -= 1;
     }
 
     // MODIFIES: this.pokeDollars
-    // EFFECTS: adds given amount to this.pokeDollars
-    public void addPokeDollars(int amount) {
-        this.pokeDollars += amount;
-        System.out.println("You received " + amount + " PokéDollars.");
+    // EFFECTS: adds given amount to player's pokeDollars
+    public void addPokeDollars(int pokeDollars) {
+        this.pokeDollars += pokeDollars;
+        System.out.println("You received " + pokeDollars + " PokéDollars.");
         System.out.println("Your PokéDollars: " + this.pokeDollars);
     }
 
     // REQUIRES: this.pokeDollars >= amount
     // MODIFIES: this.pokeDollars
-    // EFFECTS: deducts given amount from this.pokeDollars
-    public void deductPokeDollars(int amount) {
-        this.pokeDollars -= amount;
+    // EFFECTS: deducts given amount from player's pokeDollars
+    public void deductPokeDollars(int pokeDollars) {
+        this.pokeDollars -= pokeDollars;
         System.out.println("Your PokéDollars: " + this.pokeDollars);
     }
 

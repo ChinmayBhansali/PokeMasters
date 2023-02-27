@@ -10,10 +10,6 @@ import java.util.Arrays;
 public class Growlithe extends Pokemon {
     public Growlithe(int level) {
         super("Growlithe", level);
-    }
-
-    @Override
-    public void setAttacks() {
         this.attacks = new ArrayList<>(Arrays.asList(new Ember(), new Bite()));
     }
 
@@ -21,9 +17,4 @@ public class Growlithe extends Pokemon {
     public void setHP() {
         this.hp = 55 * this.level;
     }
-
-//    @Override
-//    public void setSpeed() {
-//
-//    }
 }

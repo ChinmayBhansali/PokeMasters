@@ -11,10 +11,6 @@ import java.util.Arrays;
 public class Rattata extends Pokemon {
     public Rattata(int level) {
         super("Rattata", level);
-    }
-
-    @Override
-    public void setAttacks() {
         this.attacks = new ArrayList<>(Arrays.asList(new Tackle(), new QuickAttack(), new Bite()));
     }
 
@@ -22,9 +18,4 @@ public class Rattata extends Pokemon {
     public void setHP() {
         this.hp = 30 * this.level;
     }
-
-//    @Override
-//    public void setSpeed() {
-//
-//    }
 }

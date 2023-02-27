@@ -11,10 +11,6 @@ import java.util.Arrays;
 public class Meowth extends Pokemon {
     public Meowth(int level) {
         super("Meowth", level);
-    }
-
-    @Override
-    public void setAttacks() {
         this.attacks = new ArrayList<>(Arrays.asList(new FakeOut(), new Feint(), new Scratch()));
     }
 
@@ -22,9 +18,4 @@ public class Meowth extends Pokemon {
     public void setHP() {
         this.hp = 40 * this.level;
     }
-
-//    @Override
-//    public void setSpeed() {
-//
-//    }
 }

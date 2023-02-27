@@ -10,10 +10,6 @@ import java.util.Arrays;
 public class Pidgey extends Pokemon {
     public Pidgey(int level) {
         super("Pidgey", level);
-    }
-
-    @Override
-    public void setAttacks() {
         this.attacks = new ArrayList<>(Arrays.asList(new Tackle(), new Gust()));
     }
 
@@ -21,9 +17,4 @@ public class Pidgey extends Pokemon {
     public void setHP() {
         this.hp = 40 * this.level;
     }
-
-//    @Override
-//    public void setSpeed() {
-//
-//    }
 }

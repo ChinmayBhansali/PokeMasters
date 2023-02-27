@@ -10,10 +10,6 @@ import java.util.Arrays;
 public class Diglett extends Pokemon {
     public Diglett(int level) {
         super("Diglett", level);
-    }
-
-    @Override
-    public void setAttacks() {
         this.attacks = new ArrayList<>(Arrays.asList(new Scratch(), new Astonish()));
     }
 
@@ -21,9 +17,4 @@ public class Diglett extends Pokemon {
     public void setHP() {
         this.hp = 10 * this.level;
     }
-
-//    @Override
-//    public void setSpeed() {
-//
-//    }
 }

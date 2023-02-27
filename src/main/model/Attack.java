@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public abstract class Attack {
 
@@ -11,9 +10,9 @@ public abstract class Attack {
 //    private ArrayList<Double> accuracies;
 
     private String name;
-    // protected String type;
+//    protected String type;
     protected int power;
-    // protected double acc;
+//    protected double acc;
 
 //    public void setTypes() {
 //        types = new ArrayList<>(Arrays.asList("Normal", "Normal", "Normal", "Normal", "Normal", "Normal", "Normal",
