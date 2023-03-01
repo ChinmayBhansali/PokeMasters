@@ -55,7 +55,6 @@ public class Player {
     // EFFECTS: deducts given amount from player's pokeDollars
     public void deductPokeDollars(int pokeDollars) {
         this.pokeDollars -= pokeDollars;
-        System.out.println("Your PokéDollars: " + this.pokeDollars);
     }
 
     public int getPokeballs() {

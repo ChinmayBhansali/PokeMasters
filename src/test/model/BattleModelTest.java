@@ -2,6 +2,7 @@ package model;
 
 import model.pokemon.Onix;
 import model.pokemon.Pidgey;
+import model.pokemon.Pikachu;
 import model.pokemon.starters.BulbasaurStarter;
 import model.pokemon.starters.CharmanderStarter;
 import model.pokemon.starters.PikachuStarter;
@@ -109,10 +110,25 @@ public class BattleModelTest {
 
     @Test
     void getActivePokemonTest() {
+        testPlayer.addPokemon(new Pikachu(2));
         Pokemon activePokemon = testBM.getActivePokemon();
         assertEquals("Bulbasaur", activePokemon.getName());
         activePokemon.reduceHP(activePokemon.getHP());
         activePokemon = testBM.getActivePokemon();
         assertEquals("Onix", activePokemon.getName());
+        activePokemon.reduceHP(activePokemon.getHP());
+        activePokemon = testBM.getActivePokemon();
+        assertEquals("Pikachu", activePokemon.getName());
+    }
+
+    @Test
+    void getActivePokemonAllPokemonFaint() {
+        Pokemon activePokemon = testBM.getActivePokemon();
+        assertEquals("Bulbasaur", activePokemon.getName());
+        for (Pokemon p : testPlayer.getPokemon()) {
+            p.reduceHP(p.getHP());
+        }
+        activePokemon = testBM.getActivePokemon();
+        assertEquals("Bulbasaur", activePokemon.getName());
     }
 }
