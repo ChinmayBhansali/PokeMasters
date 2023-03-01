@@ -2,16 +2,13 @@ package ui;
 
 import model.Player;
 import model.Pokemon;
-import model.pokemon.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Scanner;
+import java.util.*;
 
 public class Game {
     private Player player;
     private Scanner input = new Scanner(System.in);
+    private Random random = new Random();
 
     public Game(Player player) {
         this.player = player;
@@ -40,26 +37,18 @@ public class Game {
         }
     }
 
-    // EFFECTS: prints direction and movement of player and creates a Battle with player and random pokemon of random
-    //          level
+    // EFFECTS: prints direction and movement of player and starts a Battle with player
     private void move() {
-        ArrayList<String> directions = new ArrayList<>(Arrays.asList("North", "West", "East", "South"));
         System.out.println("1. North\n" + "2. West\n" + "3. East\n" + "4. South");
         int direction = input.nextInt() - 1;
 
-        System.out.println("You moved " + (int) ((Math.random() * 6) + 1) + " steps towards "
+        int randomSteps = random.nextInt(6) + 1;
+        ArrayList<String> directions = new ArrayList<>(Arrays.asList("North", "West", "East", "South"));
+
+        System.out.println("You moved " + randomSteps + " steps towards "
                 + directions.get(direction) + ".");
 
-        int randomLevel = (int) (Math.random() * 10) + 1;
-        ArrayList<Pokemon> allPokemon = new ArrayList<>(Arrays.asList(new Bulbasaur(randomLevel),
-                new Charmander(randomLevel), new Squirtle(randomLevel), new Caterpie(randomLevel),
-                new Weedle(randomLevel), new Pidgey(randomLevel), new Rattata(randomLevel),
-                new Spearow(randomLevel), new Pikachu(randomLevel), new Diglett(randomLevel),
-                new Meowth(randomLevel), new Psyduck(randomLevel), new Growlithe(randomLevel),
-                new Slowpoke(randomLevel), new Onix(randomLevel)));
-        Collections.shuffle(allPokemon);
-
-        Battle battle = new Battle(player, allPokemon.get(0));
+        new Battle(player);
     }
 
     // MODIFIES: player
@@ -81,7 +70,7 @@ public class Game {
     private void yourPokemon() {
         int i = 1;
         for (Pokemon p : player.getPokemon()) {
-            System.out.println(i + ". " + p.getName() + ":\n    Level: " + p.getLevel() + "\n    HP: " + p.getHP());
+            System.out.println(i + ". " + p.getName() + ":\n\tLevel: " + p.getLevel() + "\n\tHP: " + p.getHP());
             i++;
         }
         System.out.println("0. Back");
@@ -93,6 +82,7 @@ public class Game {
                 int pokemonToDo = input.nextInt();
                 if (pokemonToDo == 1) {
                     player.releasePokemon(thisPokemon);
+                    System.out.println(thisPokemon.getName() + " has been removed from your Pokémon.");
                 }
             }
         }
@@ -130,6 +120,7 @@ public class Game {
             if (buyPokeballs * 100 <= player.getPokeDollars()) {
                 player.addPokeballs(buyPokeballs);
                 player.deductPokeDollars(buyPokeballs * 100);
+                System.out.println("You received " + buyPokeballs + " PokéBalls.");
             } else {
                 System.err.println("Insufficient PokéDollars!");
             }

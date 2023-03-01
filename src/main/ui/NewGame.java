@@ -33,6 +33,7 @@ public class NewGame {
         System.out.println("Now, now! You will need some PokéBalls to catch the Pokémon around you.\n"
                 + "Here are 5 PokéBalls. You might need them. You can purchase more from any PokéCenter.");
         player.addPokeballs(STARTING_POKEBALLS);
+        System.out.println("You received " + STARTING_POKEBALLS + " PokéBalls.");
         player.addPokeDollars(STARTING_POKEDOLLARS);
         System.out.println("Now, set off to travel this amazing world!");
     }
@@ -67,23 +68,19 @@ public class NewGame {
                 + "3. The Water type: Squirtle\n"
                 + "Which of these do you want to be your partner in this quest to become the PokéMaster?");
 
-        int chooseStarter = input.nextInt();
+        int chooseStarter = input.nextInt() - 1;
 
         ArrayList<Pokemon> starterPokemon = new ArrayList<>(Arrays.asList(new BulbasaurStarter(),
                 new CharmanderStarter(), new SquirtleStarter(), new PikachuStarter()));
 
-        if (chooseStarter == 1) {
-            System.out.println("You chose Bulbasaur!");
-            player.addPokemon(new BulbasaurStarter());
-        } else if (chooseStarter == 2) {
-            System.out.println("You chose Charmander!");
-            player.addPokemon(new CharmanderStarter());
-        } else if (chooseStarter == 3) {
-            System.out.println("You chose Squirtle!");
-            player.addPokemon(new SquirtleStarter());
+        if (chooseStarter >= 0 && chooseStarter < 3) {
+            System.out.println("You chose " + starterPokemon.get(chooseStarter).getName() + "!");
+            System.out.println(starterPokemon.get(chooseStarter).getName() + " has been added to your Pokédex.");
+            player.addPokemon(starterPokemon.get(chooseStarter));
         } else {
-            System.err.println("Oops! Something went wrong. You got a Pikachu as your starter Pokémon!");
-            player.addPokemon(new PikachuStarter());
+            System.err.println("Oops! Something went wrong. You received a Pikachu as your starter Pokémon!"
+                    + "\nPikachu has been added to your Pokédex.");
+            player.addPokemon(starterPokemon.get(3));
         }
     }
 }

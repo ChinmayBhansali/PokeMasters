@@ -18,14 +18,12 @@ public class Player {
     // EFFECTS: adds given amount of pokeballs to player's pokeballs
     public void addPokeballs(int pokeballs) {
         this.pokeballs += pokeballs;
-        System.out.println("You received " + pokeballs + " PokéBalls.");
     }
 
     // MODIFIES: this
     // EFFECTS: adds to given pokemon to the player's pokemon
     public void addPokemon(Pokemon newPokemon) {
         this.pokemon.add(newPokemon);
-        System.out.println(newPokemon.getName() + " has been added to your Pokédex.");
     }
 
     // REQUIRES: this.pokemon contains freePokemon
@@ -39,15 +37,17 @@ public class Player {
     // MODIFIES: this
     // EFFECTS: reduces player's pokeballs by 1
     public void usePokeball() {
-        this.pokeballs -= 1;
+        if (this.pokeballs <= 0) {
+            System.err.println("You have no Pokéballs left.");
+        } else {
+            this.pokeballs -= 1;
+        }
     }
 
     // MODIFIES: this.pokeDollars
     // EFFECTS: adds given amount to player's pokeDollars
     public void addPokeDollars(int pokeDollars) {
         this.pokeDollars += pokeDollars;
-        System.out.println("You received " + pokeDollars + " PokéDollars.");
-        System.out.println("Your PokéDollars: " + this.pokeDollars);
     }
 
     // REQUIRES: this.pokeDollars >= amount
