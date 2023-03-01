@@ -9,56 +9,62 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerTest {
-    private Player player;
+    private Player testPlayer;
 
     @BeforeEach
     void setup() {
-        player = new Player();
+        testPlayer = new Player();
     }
 
     @Test
     void addPokeballsTest() {
-        assertEquals(0, player.getPokeballs());
-        player.addPokeballs(5);
-        assertEquals(5, player.getPokeballs());
+        assertEquals(0, testPlayer.getPokeballs());
+        testPlayer.addPokeballs(5);
+        assertEquals(5, testPlayer.getPokeballs());
     }
 
     @Test
     void addPokemonTest() {
-        assertEquals(0, player.getPokemon().size());
-        player.addPokemon(new Pikachu(8));
-        player.addPokemon(new Growlithe(9));
-        assertEquals(2, player.getPokemon().size());
+        assertEquals(0, testPlayer.getPokemon().size());
+        testPlayer.addPokemon(new Pikachu(8));
+        testPlayer.addPokemon(new Growlithe(9));
+        assertEquals(2, testPlayer.getPokemon().size());
     }
 
     @Test
     void usePokeballTest() {
-        player.addPokeballs(10);
-        assertEquals(10, player.getPokeballs());
-        player.usePokeball();
-        assertEquals(9, player.getPokeballs());
+        testPlayer.addPokeballs(10);
+        assertEquals(10, testPlayer.getPokeballs());
+        testPlayer.usePokeball();
+        assertEquals(9, testPlayer.getPokeballs());
+    }
+
+    @Test
+    void usePokeballNoPokeballs() {
+        testPlayer.usePokeball();
+        assertEquals(0, testPlayer.getPokeballs());
     }
 
     @Test
     void releasePokemonTest() {
-        player.addPokemon(new Weedle(3));
-        assertEquals(1, player.getPokemon().size());
-        player.releasePokemon(player.getPokemon().get(0));
-        assertEquals(0, player.getPokemon().size());
+        testPlayer.addPokemon(new Weedle(3));
+        assertEquals(1, testPlayer.getPokemon().size());
+        testPlayer.releasePokemon(testPlayer.getPokemon().get(0));
+        assertEquals(0, testPlayer.getPokemon().size());
     }
 
     @Test
     void addPokeDollarsTest() {
-        assertEquals(0, player.getPokeDollars());
-        player.addPokeDollars(300);
-        assertEquals(300, player.getPokeDollars());
+        assertEquals(0, testPlayer.getPokeDollars());
+        testPlayer.addPokeDollars(300);
+        assertEquals(300, testPlayer.getPokeDollars());
     }
 
     @Test
     void deductPokeDollarsTest() {
-        player.addPokeDollars(500);
-        assertEquals(500, player.getPokeDollars());
-        player.deductPokeDollars(200);
-        assertEquals(300, player.getPokeDollars());
+        testPlayer.addPokeDollars(500);
+        assertEquals(500, testPlayer.getPokeDollars());
+        testPlayer.deductPokeDollars(200);
+        assertEquals(300, testPlayer.getPokeDollars());
     }
 }

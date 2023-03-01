@@ -41,7 +41,7 @@ public class BattleModelTest {
         boolean defeated = testBM.playerAttack(testAttack);
         assertEquals(0, testBM.getWildPokemon().getHP());
         assertTrue(defeated);
-        assertEquals(testBM.getWildPokemon().getLevel() * 10, testPlayer.getPokeDollars());
+        assertEquals(testBM.getWildPokemon().getLevel() * 10, testBM.getPlayer().getPokeDollars());
     }
 
     @Test
@@ -105,5 +105,14 @@ public class BattleModelTest {
         assertEquals(5, testPlayer.getPokeballs());
         assertEquals(originalPokemon, testPlayer.getPokemon().size());
         assertFalse(catchPokemon);
+    }
+
+    @Test
+    void getActivePokemonTest() {
+        Pokemon activePokemon = testBM.getActivePokemon();
+        assertEquals("Bulbasaur", activePokemon.getName());
+        activePokemon.reduceHP(activePokemon.getHP());
+        activePokemon = testBM.getActivePokemon();
+        assertEquals("Onix", activePokemon.getName());
     }
 }
