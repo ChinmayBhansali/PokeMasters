@@ -6,27 +6,42 @@ import model.pokemon.starters.BulbasaurStarter;
 import model.pokemon.starters.CharmanderStarter;
 import model.pokemon.starters.PikachuStarter;
 import model.pokemon.starters.SquirtleStarter;
+import persistence.JsonReader;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class NewGame {
+    private static final String JSON_STORE = "./data/pokemasters.json";
     private Player player;
     private static int STARTING_POKEBALLS = 5;
     private static int STARTING_POKEDOLLARS = 500;
     private Scanner input = new Scanner(System.in);
+    private JsonReader jsonReader;
 
-    public NewGame() {
+    public NewGame() throws IOException {
+        jsonReader = new JsonReader(JSON_STORE);
         player = new Player();
-        newGame();
+        game();
         Game game = new Game(player);
+    }
+
+    private void game() throws IOException {
+        System.out.println("\t1. New game\n\t2. Load previous game");
+        int game = input.nextInt();
+        if (game == 1) {
+            newGame();
+        } else if (game == 2) {
+            player = jsonReader.read();
+        }
     }
 
     // MODIFIES: player
     // EFFECTS: initializes the NewGame, adds STARTING_POKEBALLS pokeballs to player and adds STARTING_POKEDOLLARS
     //          pokedollars to player
-    public void newGame() {
+    private void newGame() {
         prologue();
         chooseStarter();
 
@@ -35,7 +50,7 @@ public class NewGame {
         player.addPokeballs(STARTING_POKEBALLS);
         System.out.println("You received " + STARTING_POKEBALLS + " PokéBalls.");
         player.addPokeDollars(STARTING_POKEDOLLARS);
-        System.out.println("Now, set off to travel this amazing world!");
+        System.out.println("Now, set off to travel this amazing world!\n");
     }
 
     // EFFECTS: prints the prologue for the game
@@ -51,6 +66,7 @@ public class NewGame {
                 + " discovered!");
 
         input.nextLine();
+        input.nextLine();
 
         System.out.println("Enough of the introduction. Now, let's dive into that world of Pokémon and show everyone "
                 + "that you are the PokéMaster!");
@@ -62,9 +78,9 @@ public class NewGame {
     // EFFECTS: adds the chosen pokemon to player.pokemon
     private void chooseStarter() {
         System.out.println("In order to become a Pokémon Trainer, you need to first have a starter Pokémon.\n"
-                + "There are 3 starter Pokémon\n"
-                + "1. The Grass type: Bulbasaur\n"
-                + "2. The Fire type: Charmander\n"
+                + "There are 3 starter Pokémon\n\t"
+                + "1. The Grass type: Bulbasaur\n\t"
+                + "2. The Fire type: Charmander\n\t"
                 + "3. The Water type: Squirtle\n"
                 + "Which of these do you want to be your partner in this quest to become the PokéMaster?");
 

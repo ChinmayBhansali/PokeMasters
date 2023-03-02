@@ -51,10 +51,10 @@ public class Battle {
 
     // EFFECTS: prints the options in a battle and returns user input integer
     private int giveOptions() {
-        System.out.println("1. Attack");
-        System.out.println("2. Switch");
-        System.out.println("3. Bag");
-        System.out.println("4. Escape");
+        System.out.println("\t1. Attack");
+        System.out.println("\t2. Switch");
+        System.out.println("\t3. Bag");
+        System.out.println("\t4. Escape");
 
         return input.nextInt();
     }
@@ -88,11 +88,14 @@ public class Battle {
         System.out.println("1. Use\n0. Back");
         int usePokeball = input.nextInt();
         if (usePokeball == 1) {
-            if (battleModel.usePokeball()) {
+            boolean caught = battleModel.usePokeball();
+            if (caught) {
+                System.out.println("1. 2.. 3... Poof!");
                 System.out.println(battleModel.getWildPokemon().getName() + " was caught!");
                 System.out.println(battleModel.getWildPokemon().getName() + " has been added to your Pokédex.");
                 return true;
             } else {
+                System.out.println("1. 2.. 3... Bam!");
                 System.out.println("Failed to catch " + battleModel.getWildPokemon().getName() + "!");
             }
         }

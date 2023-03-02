@@ -1,8 +1,11 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
-public abstract class Pokemon {
+public abstract class Pokemon implements Writable {
     protected String name;
     protected int level;
     protected int hp;
@@ -14,7 +17,7 @@ public abstract class Pokemon {
         this.name = name;
         this.level = level;
         setHP();
-        this.maxHP = this.hp;
+        this.maxHP = hp;
 //        setSpeed();
 
 //        pokemonSpeeds = new ArrayList<>(Arrays.asList(45, 65, 43, 45, 50, 56, 72, 70, 90, 95, 90, 55, 60, 15, 70));
@@ -24,33 +27,42 @@ public abstract class Pokemon {
     // MODIFIES: this
     // EFFECTS: reduces this.hp by given amount
     public void reduceHP(int amount) {
-        this.hp -= amount;
+        hp -= amount;
     }
 
     // EFFECTS: returns true if pokemon health is critical, false otherwise
     public boolean isHealthCritical() {
-        return this.hp < this.maxHP / 5;
+        return hp < maxHP / 5;
     }
 
     public abstract void setHP();
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public int getLevel() {
-        return this.level;
+        return level;
     }
 
     public int getHP() {
-        return this.hp;
+        return hp;
     }
 
     public ArrayList<Attack> getAttacks() {
-        return this.attacks;
+        return attacks;
     }
 
 //    public int getSpeed() {
 //        return this.speed;
 //    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("level", level);
+        json.put("hp", hp);
+        return json;
+    }
 }

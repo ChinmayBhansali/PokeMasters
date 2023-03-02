@@ -2,21 +2,26 @@ package ui;
 
 import model.Player;
 import model.Pokemon;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Game {
+    private static final String JSON_STORE = "./data/pokemasters.json";
     private Player player;
     private Scanner input = new Scanner(System.in);
     private Random random = new Random();
+    private JsonWriter jsonWriter;
 
     public Game(Player player) {
         this.player = player;
+        jsonWriter = new JsonWriter(JSON_STORE);
         game();
     }
 
     // EFFECTS: runs the main game
-    public void game() {
+    private void game() {
         while (true) {
             System.out.println("1. Move\n"
                     + "2. PokéCenter\n"
@@ -32,6 +37,7 @@ public class Game {
             } else if (choice == 3) {
                 yourPokemon();
             } else if (choice == 4) {
+                quit();
                 break;
             }
         }
@@ -124,6 +130,25 @@ public class Game {
             } else {
                 System.err.println("Insufficient PokéDollars!");
             }
+        }
+    }
+
+    private void quit() {
+        System.out.println("Do you want to save your game?\n\t1. Yes\n\t2. No");
+        int save = input.nextInt();
+        if (save == 1) {
+            save();
+        }
+    }
+
+    private void save() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(player);
+            jsonWriter.close();
+            System.out.println("Saved your game to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
         }
     }
 }

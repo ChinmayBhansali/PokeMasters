@@ -21,6 +21,7 @@ Also, later however, you will be able to save and reload your gameplay, and also
 We hope you enjoy this game!
 
 In this game:
+- as a player, when I start the game, I want to be given the option to load my previous game from file.
 - as a player, I want to be able to choose my starter Pokémon
 - as a player, I want to be able to battle other Pokémon with my own
 - as a player in a battle, I want to be able to attack with my active Pokémon
@@ -31,4 +32,5 @@ In this game:
 - as a player, I want to be able to heal my Pokémon at PokéCenter
 - as a player, I want to buy items (in this version, only PokéBalls) at PokéCenter
 - as a player, I want to be able to remove any Pokémon from my Pokémon
+- as a player, when I select the quit option, I want to be given the option to save my game or not.
 - as a player, I want to be able to quit my game

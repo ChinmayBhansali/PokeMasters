@@ -1,0 +1,9 @@
+{
+    "pokeballs": 5,
+    "pokemon": [{
+        "level": 5,
+        "name": "Bulbasaur",
+        "hp": 225
+    }],
+    "pokedollars": 500
+}

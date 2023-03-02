@@ -1,8 +1,12 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
-public class Player {
+public class Player implements Writable {
     private ArrayList<Pokemon> pokemon;
     private int pokeballs;
     private int pokeDollars;
@@ -67,5 +71,25 @@ public class Player {
 
     public int getPokeDollars() {
         return this.pokeDollars;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("pokemon", pokemonToJson());
+        json.put("pokeballs", pokeballs);
+        json.put("pokedollars", pokeDollars);
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray pokemonToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Pokemon p : pokemon) {
+            jsonArray.put(p.toJson());
+        }
+
+        return jsonArray;
     }
 }
