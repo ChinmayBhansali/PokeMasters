@@ -29,7 +29,7 @@ public class NewGame {
     }
 
     private void game() throws IOException {
-        System.out.println("\t1. New game\n\t2. Load previous game");
+        System.out.println("\n1. New game\n2. Load previous game");
         int game = input.nextInt();
         if (game == 1) {
             newGame();
@@ -50,7 +50,7 @@ public class NewGame {
         player.addPokeballs(STARTING_POKEBALLS);
         System.out.println("You received " + STARTING_POKEBALLS + " PokéBalls.");
         player.addPokeDollars(STARTING_POKEDOLLARS);
-        System.out.println("Now, set off to travel this amazing world!\n");
+        System.out.println("Now, set off to travel this amazing world!");
     }
 
     // EFFECTS: prints the prologue for the game

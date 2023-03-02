@@ -23,7 +23,7 @@ public class Game {
     // EFFECTS: runs the main game
     private void game() {
         while (true) {
-            System.out.println("1. Move\n"
+            System.out.println("\n1. Move\n"
                     + "2. PokéCenter\n"
                     + "3. Your Pokémon\n"
                     + "4. Quit");
@@ -53,8 +53,9 @@ public class Game {
 
         System.out.println("You moved " + randomSteps + " steps towards "
                 + directions.get(direction) + ".");
-
-        new Battle(player);
+        if (canBattle()) {
+            new Battle(player);
+        }
     }
 
     // MODIFIES: player
@@ -150,5 +151,14 @@ public class Game {
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }
+    }
+
+    private boolean canBattle() {
+        for (Pokemon p : player.getPokemon()) {
+            if (p.getHP() > 0) {
+                return true;
+            }
+        }
+        return false;
     }
 }

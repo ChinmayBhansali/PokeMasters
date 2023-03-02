@@ -51,10 +51,10 @@ public class Battle {
 
     // EFFECTS: prints the options in a battle and returns user input integer
     private int giveOptions() {
-        System.out.println("\t1. Attack");
-        System.out.println("\t2. Switch");
-        System.out.println("\t3. Bag");
-        System.out.println("\t4. Escape");
+        System.out.println("\n1. Attack");
+        System.out.println("2. Switch");
+        System.out.println("3. Bag");
+        System.out.println("4. Escape");
 
         return input.nextInt();
     }
