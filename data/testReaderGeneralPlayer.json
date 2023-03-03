@@ -1,0 +1,16 @@
+{
+  "pokeballs": 4,
+  "pokemon": [
+    {
+      "level": 5,
+      "name": "Bulbasaur",
+      "hp": 225
+    },
+    {
+      "level": 8,
+      "name": "Slowpoke",
+      "hp": 0
+    }
+  ],
+  "pokedollars": 520
+}
