@@ -40,9 +40,10 @@ public class Game {
                 break;
             }
         }
+        System.out.println("See you again!");
     }
 
-    // EFFECTS: prints direction and movement of player and starts a Battle with player
+    // EFFECTS: prints direction and movement of player, and if an encounter can happen then starts a new battle
     private void move() {
         System.out.println("1. North\n" + "2. West\n" + "3. East\n" + "4. South");
         int direction = input.nextInt() - 1;
@@ -60,8 +61,7 @@ public class Game {
         }
     }
 
-    // MODIFIES: player
-    // EFFECTS: restores player's all pokemon's health or buy items
+    // EFFECTS: gives options to restore pokemon's health and buy items
     private void pokeCenter() {
         System.out.println("1. Restore your Pokémon's health\n2. Buy items\n0. Back");
         int inPokeCenter =  input.nextInt();
@@ -74,15 +74,13 @@ public class Game {
     }
 
     // REQUIRES: player.pokemon.size() > 0
-    // MODIFIES: player
-    // EFFECTS: releases chosen pokemon from player's pokemon if opted
+    // EFFECTS: runs getPokemonStats() and releasePokemon()
     private void yourPokemon() {
         getPokemonStats();
         releasePokemon();
     }
 
-    // MODIFIES: player
-    // EFFECTS: sets player's all pokemon's health to default
+    // EFFECTS: prints all pokemon's HP after a full restore
     private void pokemonCenter() {
         gameModel.restorePokemonHealth();
         for (Pokemon p : player.getPokemon()) {
@@ -100,9 +98,7 @@ public class Game {
         }
     }
 
-    // MODIFIES: player
-    // EFFECTS: adds buyPokeballs pokeballs to player's pokeballs if player has sufficient pokedollars and
-    //          reduces player's pokeballs by buyPokeballs * 100 if opted
+    // EFFECTS: purchases buyPokeballs pokeballs if player has sufficient pokedollars or gives out an error message
     private void buyPokeballs() {
         System.out.println("Your PokéDollars: " + player.getPokeDollars());
         System.out.println("1. Continue?\n0. Back");
@@ -119,6 +115,7 @@ public class Game {
         }
     }
 
+    // EFFECTS: if the user wants to save the game, does so
     private void quit() {
         System.out.println("Do you want to save your game?\n\t1. Yes\n\t2. No");
         int save = input.nextInt();
@@ -132,6 +129,7 @@ public class Game {
         }
     }
 
+    // EFFECTS: prints name, level, HP, XP and Attacks of all pokemon
     private void getPokemonStats() {
         int i = 1;
         for (Pokemon p : player.getPokemon()) {
@@ -142,6 +140,7 @@ public class Game {
         System.out.println("0. Back");
     }
 
+    // EFFECTS: releases the pokemon the user wants to from player
     private void releasePokemon() {
         int index = input.nextInt() - 1;
         if (index < player.getPokemon().size() && index >= 0) {

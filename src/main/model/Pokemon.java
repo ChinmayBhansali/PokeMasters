@@ -26,17 +26,21 @@ public abstract class Pokemon implements Writable {
 //        pokemonSpeeds = new ArrayList<>(Arrays.asList(45, 65, 43, 45, 50, 56, 72, 70, 90, 95, 90, 55, 60, 15, 70));
     }
 
-    // REQUIRES: this.hp >= amount
+    // REQUIRES: this.hp >= healthPoints
     // MODIFIES: this
-    // EFFECTS: reduces this.hp by given amount
-    public void reduceHP(int amount) {
-        hp -= amount;
+    // EFFECTS: reduces this.hp by given healthPoints
+    public void reduceHP(int healthPoints) {
+        hp -= healthPoints;
     }
 
-    public void gainXP(int amount) {
-        xp += amount;
+    // MODIFIES: this
+    // EFFECTS: adds exp to this.xp
+    public void gainXP(int exp) {
+        xp += exp;
     }
 
+    // MODIFIES: this
+    // EFFECTS: if this pokemon has sufficient xp then adds 1 to level and returns true, otherwise returns false
     public boolean levelUp() {
         if (xp >= (level + 1) * (level + 1) * 100) {
             level++;
@@ -86,6 +90,7 @@ public abstract class Pokemon implements Writable {
 //        return this.speed;
 //    }
 
+    // EFFECTS: converts this pokemon to a JSON object and returns it
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

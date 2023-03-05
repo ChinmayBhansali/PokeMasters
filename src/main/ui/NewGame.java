@@ -19,8 +19,11 @@ public class NewGame {
         gameModel = new GameModel(player, JSON_STORE);
     }
 
-    public Player run() throws IOException {
-        System.out.println("\n1. New game\n2. Load previous game");
+    // MODIFIES: player
+    // EFFECTS: gives intro and asks if the user wants to start a new game or load previous one and runs accordingly
+    public Player runNewGame() throws IOException {
+        System.out.println("Welcome to PokéMasters: The Unreal World of Pokémon\n");
+        System.out.println("\n1. Start new game\n2. Load previous game");
         int game = input.nextInt();
         if (game == 1) {
             prologue();
@@ -31,10 +34,8 @@ public class NewGame {
         return player;
     }
 
-    // MODIFIES: player
-    // EFFECTS: initializes the NewGame, adds STARTING_POKEBALLS pokeballs to player and adds STARTING_POKEDOLLARS
-    //          pokedollars to player
-    private void newGame() {
+    // EFFECTS: sets up new player
+    private void endOfIntro() {
         gameModel.readyPlayer();
         System.out.println("Now, now! You will need some PokéBalls to catch the Pokémon around you.\n"
                 + "Here are 5 PokéBalls. You might need them. You can purchase more from any PokéCenter."
@@ -62,8 +63,7 @@ public class NewGame {
         input.nextLine();
     }
 
-    // MODIFIES: player
-    // EFFECTS: adds the chosen pokemon to player.pokemon
+    // EFFECTS: gives options to choose starter pokemon from and moves the story accordingly
     private void chooseStarter() {
         System.out.println("In order to become a Pokémon Trainer, you need to first have a starter Pokémon.\n"
                 + "There are 3 starter Pokémon\n\t"
@@ -76,16 +76,17 @@ public class NewGame {
 
         if (chooseStarter >= 0 && chooseStarter < 3) {
             System.out.println("You chose " + starter + "!");
-            newGame();
+            endOfIntro();
         } else if (chooseStarter == 294) {
             mysteriousPokemonAppearance();
         } else {
             System.err.println("Oops! Something went wrong.");
             System.out.println("You received a Pikachu!");
-            newGame();
+            endOfIntro();
         }
     }
 
+    // EFFECTS: prints a clip of appearance of a mysterious pokemon (Mewtwo)
     private void mysteriousPokemonAppearance() {
         System.err.println("!!!!");
         input.nextLine();

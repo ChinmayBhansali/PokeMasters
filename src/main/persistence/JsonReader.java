@@ -15,7 +15,6 @@ import java.util.stream.Stream;
 import model.pokemon.Mewtwo;
 import org.json.*;
 
-// Represents a reader that reads workroom from JSON data stored in file
 public class JsonReader {
     private String source;
 
@@ -24,8 +23,8 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
-    // throws IOException if an error occurs reading data from file
+    // EFFECTS: reads player from file and returns it;
+    //          throws IOException if an error occurs reading data from file
     public Player read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
@@ -44,7 +43,7 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
+    // EFFECTS: parses player from JSON object and returns it
     private Player parsePlayer(JSONObject jsonObject) {
         int pokeballs = jsonObject.getInt("pokeballs");
         int pokedollars = jsonObject.getInt("pokedollars");
@@ -56,7 +55,7 @@ public class JsonReader {
     }
 
     // MODIFIES: player
-    // EFFECTS: parses thingies from JSON object and adds them to workroom
+    // EFFECTS: parses pokemon from JSON object and adds them to player
     private void addPokemon(Player player, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("pokemon");
         for (Object json : jsonArray) {
@@ -66,7 +65,7 @@ public class JsonReader {
     }
 
     // MODIFIES: wr
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
+    // EFFECTS: parses pokemon from JSON object and adds it to player
     private void addPlayerPokemon(Player player, JSONObject jsonObject) {
         int level = jsonObject.getInt("level");
         String name = jsonObject.getString("name");

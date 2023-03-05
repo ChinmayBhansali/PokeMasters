@@ -15,8 +15,7 @@ public class Battle {
         battleModel = new BattleModel(player);
     }
 
-    // MODIFIES: this
-    // EFFECTS: initiates battle, shuffles randomIndexList
+    // EFFECTS: runs main battle
     public void fight() {
         System.out.println("You encountered a wild " + battleModel.getWildPokemon().getName() + " of level "
                 + battleModel.getWildPokemon().getLevel() + "!");
@@ -41,7 +40,7 @@ public class Battle {
         }
     }
 
-    // EFFECTS: prints player's active pokemon's and wildPokemon's HPs
+    // EFFECTS: prints active pokemon's and wildPokemon's HPs
     private void currentStats() {
         System.out.println("Your " + battleModel.getActivePokemon().getName() + "'s HP: "
                 + battleModel.getActivePokemon().getHP() + "\n" + battleModel.getWildPokemon().getName()
@@ -66,9 +65,8 @@ public class Battle {
         }
     }
 
-    // REQUIRES: 0 < input integer <= player.pokemon.size()
-    // MODIFIES: this
-    // EFFECTS: changes the pokemonNumber according to user input
+    // REQUIRES: 0 <= pokemonNumber < player.pokemon.size()
+    // EFFECTS: gives list of player's pokemon and switches active pokemon
     private void switchPokemon() {
         int i = 1;
         for (Pokemon p : battleModel.getPlayer().getPokemon()) {
@@ -79,34 +77,32 @@ public class Battle {
         battleModel.switchPokemon(pokemonNumber);
     }
 
-    // MODIFIES: player
-    // EFFECTS: if wildPokemon's health is critical, player uses pokeball and wildPokemon is added to player's pokemon
+    // EFFECTS: player uses bag, uses pokeball to try and catch the wild pokemon
     private boolean useBag() {
         System.out.println("1. PokéBalls x" + battleModel.getPlayer().getPokeballs() + "\n0. Back");
         int item = input.nextInt();
-        System.out.println("1. Use\n0. Back");
-        int usePokeball = input.nextInt();
-        if (usePokeball == 1) {
-            int caught = battleModel.usePokeball();
-            if (caught == 1) {
-                System.out.println("1. 2.. 3... Poof!");
-                System.out.println(battleModel.getWildPokemon().getName() + " was caught!");
-                System.out.println(battleModel.getWildPokemon().getName() + " has been added to your Pokédex.");
-                return true;
-            } else if (caught == 0) {
-                System.out.println("1. 2.. 3... Bam!");
-                System.out.println("Failed to catch " + battleModel.getWildPokemon().getName() + "!");
-            } else {
-                System.err.println("You cannot have more than 6 Pokémon in your team!");
+        if (item == 1) {
+            System.out.println("1. Use\n0. Back");
+            int usePokeball = input.nextInt();
+            if (usePokeball == 1) {
+                int caught = battleModel.usePokeball();
+                if (caught == 1) {
+                    System.out.println("1. 2.. 3... Poof!");
+                    System.out.println(battleModel.getWildPokemon().getName() + " was caught!");
+                    System.out.println(battleModel.getWildPokemon().getName() + " has been added to your Pokédex.");
+                    return true;
+                } else if (caught == 0) {
+                    System.out.println("1. 2.. 3... Bam!");
+                    System.out.println("Failed to catch " + battleModel.getWildPokemon().getName() + "!");
+                } else {
+                    System.err.println("You cannot have more than 6 Pokémon in your team!");
+                }
             }
         }
         return false;
     }
 
-    // MODIFIES: wildPokemon
-    // EFFECTS: if player's active pokemon's chosen attack power > wildPokemon's HP then
-    //          wildPokemon's HP reduces by player's pokemon's attack power,
-    //          otherwise wildPokemon's HP = 0
+    // EFFECTS: returns false if input == 0, else attacks the wild pokemon with chosen attack and returns true
     private boolean playerAttack() {
         int i = 1;
         for (Attack a : battleModel.getActivePokemon().getAttacks()) {
@@ -127,10 +123,7 @@ public class Battle {
         return true;
     }
 
-    // MODIFIES: player
-    // EFFECTS: if wildPokemon's random attack's power > player's active pokemon's HP then
-    //          reduces player's active pokemon's HP by the wildPokemon's attack power, otherwise
-    //          player's active pokemon's HP = 0
+    // EFFECTS: wild pokemon attacks active pokemon and prints lines according to the result of the attack
     private void wildPokemonAttack() {
         int originalHP = battleModel.getActivePokemon().getHP();
         Attack wildPokemonAttack = battleModel.wildPokemonAttack();
@@ -147,6 +140,7 @@ public class Battle {
         }
     }
 
+    // EFFECTS: active pokemon attacks wild pokemon with chosen attack; prints lines according to result of the attack
     private void activePokemonAttack(int attackNumber) {
         Attack whichAttack = battleModel.getActivePokemon().getAttacks().get(attackNumber);
 

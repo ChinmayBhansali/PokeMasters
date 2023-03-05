@@ -22,8 +22,8 @@ public class BattleModel {
 
     // MODIFIES: wildPokemon
     // EFFECTS: if player's active pokemon's chosen attack power > wildPokemon's HP then
-    //          wildPokemon's HP reduces by player's pokemon's attack power,
-    //          otherwise wildPokemon's HP = 0
+    //          wildPokemon's HP reduces by player's pokemon's attack power and return true,
+    //          otherwise wildPokemon's HP = 0 and returns false
     public boolean playerAttack(Attack playerAttack) {
         if (wildPokemon.getHP() <= playerAttack.getPower()) {
             wildPokemon.reduceHP(wildPokemon.getHP());
@@ -38,7 +38,7 @@ public class BattleModel {
     // MODIFIES: player
     // EFFECTS: if wildPokemon's random attack's power > player's active pokemon's HP then
     //          reduces player's active pokemon's HP by the wildPokemon's attack power, otherwise
-    //          player's active pokemon's HP = 0
+    //          player's active pokemon's HP = 0; returns the attack used
     public Attack wildPokemonAttack() {
         randomIndex = random.nextInt(wildPokemon.getAttacks().size());
 
@@ -48,6 +48,8 @@ public class BattleModel {
         return wildPokemon.getAttacks().get(randomIndex);
     }
 
+    // MODIFIES: player
+    // EFFECTS: active pokemon gains XP and if gained enough, levels up and returns true, otherwise returns false
     public boolean activePokemonGainXP(Attack attack) {
         player.getPokemon().get(pokemonNumber).gainXP(attack.getPower());
         boolean levelUp = player.getPokemon().get(pokemonNumber).levelUp();
@@ -60,8 +62,9 @@ public class BattleModel {
         this.pokemonNumber = pokemonNumber;
     }
 
-    // MODIFIES: player
-    // EFFECTS: player uses pokeball AND if wildPokemon's health is critical, player catches the pokemon
+    // EFFECTS: if player has less than 6 pokemon and non-zero pokeballs,
+    //          player catches the pokemon if its health is critical and returns 1, else fails to catch and returns 0,
+    //          otherwise returns 2
     public int usePokeball() {
         if (player.getPokemon().size() < 6 && player.getPokeballs() > 0) {
             if (wildPokemon.isHealthCritical()) {
@@ -75,7 +78,6 @@ public class BattleModel {
         return 2;
     }
 
-    // MODIFIES: pokemonNumber
     // EFFECTS: if active pokemon is fainted, switches to next pokemon (if there) AND returns active pokemon
     public Pokemon getActivePokemon() {
         if (player.getPokemon().get(pokemonNumber).getHP() == 0) {
@@ -99,7 +101,7 @@ public class BattleModel {
         return player;
     }
 
-    // EFFECTS: returns a random pokemon (out of 15 pokemon) with a random level (1-15)
+    // EFFECTS: returns a random pokemon (out of 15 pokemon) of a random level (1-15)
     private Pokemon getRandomPokemon() {
         Random random = new Random();
         int randomLevel = random.nextInt(15) + 1;

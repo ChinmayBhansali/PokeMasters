@@ -25,14 +25,14 @@ public class Player implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds to given pokemon to the player's pokemon
+    // EFFECTS: adds to given pokemon to the player
     public void addPokemon(Pokemon newPokemon) {
         pokemon.add(newPokemon);
     }
 
     // REQUIRES: this.pokemon contains freePokemon
     // MODIFIES: this
-    // EFFECTS: removes the pokemon from player's pokemon
+    // EFFECTS: removes the pokemon from player
     public void releasePokemon(Pokemon freePokemon) {
         pokemon.remove(freePokemon);
     }
@@ -44,14 +44,14 @@ public class Player implements Writable {
         pokeballs -= 1;
     }
 
-    // MODIFIES: this.pokeDollars
+    // MODIFIES: this
     // EFFECTS: adds given amount to player's pokeDollars
     public void addPokeDollars(int pokeDollars) {
         this.pokeDollars += pokeDollars;
     }
 
     // REQUIRES: this.pokeDollars >= amount
-    // MODIFIES: this.pokeDollars
+    // MODIFIES: this
     // EFFECTS: deducts given amount from player's pokeDollars
     public void deductPokeDollars(int pokeDollars) {
         this.pokeDollars -= pokeDollars;
@@ -69,6 +69,7 @@ public class Player implements Writable {
         return pokeDollars;
     }
 
+    // EFFECTS: converts this player to a JSON object and returns it
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
