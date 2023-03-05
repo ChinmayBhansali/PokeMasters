@@ -60,6 +60,11 @@ public class GameModelTest {
         String errorPokemon = testGameModel.assignStarter(3);
         assertEquals(1, testPlayer.getPokemon().size());
         assertEquals("Pikachu", errorPokemon);
+        testPlayer.releasePokemon(testPlayer.getPokemon().get(0));
+        assertEquals(0, testPlayer.getPokemon().size());
+        errorPokemon = testGameModel.assignStarter(-1);
+        assertEquals(1, testPlayer.getPokemon().size());
+        assertEquals("Pikachu", errorPokemon);
     }
 
     @Test

@@ -127,6 +127,18 @@ public class BattleModelTest {
         assertEquals(5, testPlayer.getPokeballs());
         assertEquals(originalPokemon, testPlayer.getPokemon().size());
         assertEquals(2, catchPokemon);
+        testBM.getWildPokemon().reduceHP(1);
+    }
+
+    @Test
+    void usePokeballsNoPokeballs() {
+        testPlayer = new Player();
+        testBM = new BattleModel(testPlayer);
+        testPlayer.addPokemon(new BulbasaurStarter());
+        assertEquals(0, testPlayer.getPokeballs());
+        int use = testBM.usePokeball();
+        assertEquals(0, testPlayer.getPokeballs());
+        assertEquals(2, use);
     }
 
     @Test
