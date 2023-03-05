@@ -4,12 +4,14 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public abstract class Pokemon implements Writable {
     protected String name;
     protected int level;
     protected int hp;
     protected ArrayList<Attack> attacks;
+    private int xp;
     private int maxHP;
 //    protected int speed;
 
@@ -17,7 +19,8 @@ public abstract class Pokemon implements Writable {
         this.name = name;
         this.level = level;
         setHP();
-        this.maxHP = hp;
+        maxHP = hp;
+        xp = level * level * 100;
 //        setSpeed();
 
 //        pokemonSpeeds = new ArrayList<>(Arrays.asList(45, 65, 43, 45, 50, 56, 72, 70, 90, 95, 90, 55, 60, 15, 70));
@@ -28,6 +31,18 @@ public abstract class Pokemon implements Writable {
     // EFFECTS: reduces this.hp by given amount
     public void reduceHP(int amount) {
         hp -= amount;
+    }
+
+    public void gainXP(int amount) {
+        xp += amount;
+    }
+
+    public boolean levelUp() {
+        if (xp >= (level + 1) * (level + 1) * 100) {
+            level++;
+            return true;
+        }
+        return false;
     }
 
     // EFFECTS: returns true if pokemon health is critical, false otherwise
@@ -53,6 +68,20 @@ public abstract class Pokemon implements Writable {
         return attacks;
     }
 
+    public String getAttackNames() {
+        ArrayList<String> attackNames = new ArrayList<>();
+        for (Attack a : attacks) {
+            attackNames.add(a.getName());
+        }
+        String attacks = Arrays.toString(attackNames.toArray()).replace("[", "").replace("]", "");
+
+        return attacks;
+    }
+
+    public int getXP() {
+        return xp;
+    }
+
 //    public int getSpeed() {
 //        return this.speed;
 //    }
@@ -63,6 +92,7 @@ public abstract class Pokemon implements Writable {
         json.put("name", name);
         json.put("level", level);
         json.put("hp", hp);
+        json.put("xp", xp);
         return json;
     }
 }

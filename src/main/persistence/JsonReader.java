@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
+import model.pokemon.Mewtwo;
 import org.json.*;
 
 // Represents a reader that reads workroom from JSON data stored in file
@@ -28,7 +29,8 @@ public class JsonReader {
     public Player read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
-        return parsePlayer(jsonObject);
+        Player player = parsePlayer(jsonObject);
+        return player;
     }
 
     // EFFECTS: reads source file as string and returns it
@@ -69,15 +71,17 @@ public class JsonReader {
         int level = jsonObject.getInt("level");
         String name = jsonObject.getString("name");
         int hp = jsonObject.getInt("hp");
+        int xp = jsonObject.getInt("xp");
         ArrayList<Pokemon> allPokemon = new ArrayList<>(Arrays.asList(new Bulbasaur(level), new Caterpie(level),
-                new Charmander(level), new Diglett(level), new Growlithe(level), new Meowth(level), new Onix(level),
-                new Pidgey(level), new Pikachu(level), new Psyduck(level), new Rattata(level), new Slowpoke(level),
-                new Spearow(level), new Squirtle(level), new Weedle(level)));
+                new Charmander(level), new Diglett(level), new Growlithe(level), new Meowth(level), new Mewtwo(level),
+                new Onix(level), new Pidgey(level), new Pikachu(level), new Psyduck(level), new Rattata(level),
+                new Slowpoke(level), new Spearow(level), new Squirtle(level), new Weedle(level)));
         ArrayList<String> allPokemonNames = new ArrayList<>();
         for (Pokemon p : allPokemon) {
             allPokemonNames.add(p.getName());
         }
         Pokemon pokemon = allPokemon.get(allPokemonNames.indexOf(name));
+        pokemon.gainXP(xp - pokemon.getXP());
         pokemon.reduceHP(pokemon.getHP() - hp);
         player.addPokemon(pokemon);
     }

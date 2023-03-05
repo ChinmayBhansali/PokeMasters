@@ -48,6 +48,12 @@ public class BattleModel {
         return wildPokemon.getAttacks().get(randomIndex);
     }
 
+    public boolean activePokemonGainXP(Attack attack) {
+        player.getPokemon().get(pokemonNumber).gainXP(attack.getPower());
+        boolean levelUp = player.getPokemon().get(pokemonNumber).levelUp();
+        return levelUp;
+    }
+
     // MODIFIES: this
     // EFFECTS: changes the pokemonNumber according to given integer
     public void switchPokemon(int pokemonNumber) {
@@ -56,18 +62,17 @@ public class BattleModel {
 
     // MODIFIES: player
     // EFFECTS: player uses pokeball AND if wildPokemon's health is critical, player catches the pokemon
-    public boolean usePokeball() {
-        if (player.getPokemon().size() < 6) {
+    public int usePokeball() {
+        if (player.getPokemon().size() < 6 && player.getPokeballs() > 0) {
             if (wildPokemon.isHealthCritical()) {
                 catchPokemon();
-                return true;
+                return 1;
             } else {
                 catchPokemonFail();
+                return 0;
             }
-        } else {
-            System.err.println("You cannot have more than 6 Pokémon in your team!");
         }
-        return false;
+        return 2;
     }
 
     // MODIFIES: pokemonNumber
@@ -94,10 +99,10 @@ public class BattleModel {
         return player;
     }
 
-    // EFFECTS: returns a random pokemon (out of 15 pokemon) with a random level (1-10)
+    // EFFECTS: returns a random pokemon (out of 15 pokemon) with a random level (1-15)
     private Pokemon getRandomPokemon() {
         Random random = new Random();
-        int randomLevel = random.nextInt(10) + 1;
+        int randomLevel = random.nextInt(15) + 1;
         ArrayList<Pokemon> allPokemon = new ArrayList<>(Arrays.asList(new Bulbasaur(randomLevel),
                 new Charmander(randomLevel), new Squirtle(randomLevel), new Caterpie(randomLevel),
                 new Weedle(randomLevel), new Pidgey(randomLevel), new Rattata(randomLevel),

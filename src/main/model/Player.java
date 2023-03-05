@@ -13,9 +13,9 @@ public class Player implements Writable {
 //    private ArrayList<Pokemon> pokedex;
 
     public Player() {
-        this.pokemon = new ArrayList<>();
-        this.pokeballs = 0;
-        this.pokeDollars = 0;
+        pokemon = new ArrayList<>();
+        pokeballs = 0;
+        pokeDollars = 0;
     }
 
     // MODIFIES: this
@@ -27,25 +27,21 @@ public class Player implements Writable {
     // MODIFIES: this
     // EFFECTS: adds to given pokemon to the player's pokemon
     public void addPokemon(Pokemon newPokemon) {
-        this.pokemon.add(newPokemon);
+        pokemon.add(newPokemon);
     }
 
     // REQUIRES: this.pokemon contains freePokemon
     // MODIFIES: this
     // EFFECTS: removes the pokemon from player's pokemon
     public void releasePokemon(Pokemon freePokemon) {
-        this.pokemon.remove(freePokemon);
+        pokemon.remove(freePokemon);
     }
 
     // REQUIRES: this.pokeballs > 0
     // MODIFIES: this
     // EFFECTS: reduces player's pokeballs by 1
     public void usePokeball() {
-        if (this.pokeballs <= 0) {
-            System.err.println("You have no Pokéballs left.");
-        } else {
-            this.pokeballs -= 1;
-        }
+        pokeballs -= 1;
     }
 
     // MODIFIES: this.pokeDollars
@@ -62,15 +58,15 @@ public class Player implements Writable {
     }
 
     public int getPokeballs() {
-        return this.pokeballs;
+        return pokeballs;
     }
 
     public ArrayList<Pokemon> getPokemon() {
-        return this.pokemon;
+        return pokemon;
     }
 
     public int getPokeDollars() {
-        return this.pokeDollars;
+        return pokeDollars;
     }
 
     @Override
@@ -82,7 +78,7 @@ public class Player implements Writable {
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns pokemon of this player as a JSON array
     private JSONArray pokemonToJson() {
         JSONArray jsonArray = new JSONArray();
 

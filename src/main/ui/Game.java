@@ -1,27 +1,26 @@
 package ui;
 
+import model.GameModel;
 import model.Player;
 import model.Pokemon;
-import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Game {
-    private static final String JSON_STORE = "./data/pokemasters.json";
     private Player player;
+    private GameModel gameModel;
     private Scanner input = new Scanner(System.in);
-    private Random random = new Random();
-    private JsonWriter jsonWriter;
+    public static final String JSON_STORE = "./data/pokemasters.json";
+
 
     public Game(Player player) {
         this.player = player;
-        jsonWriter = new JsonWriter(JSON_STORE);
-        game();
+        gameModel = new GameModel(player, JSON_STORE);
     }
 
     // EFFECTS: runs the main game
-    private void game() {
+    public void runGame() {
         while (true) {
             System.out.println("\n1. Move\n"
                     + "2. PokéCenter\n"
@@ -48,13 +47,16 @@ public class Game {
         System.out.println("1. North\n" + "2. West\n" + "3. East\n" + "4. South");
         int direction = input.nextInt() - 1;
 
+        Random random = new Random();
         int randomSteps = random.nextInt(6) + 1;
         ArrayList<String> directions = new ArrayList<>(Arrays.asList("North", "West", "East", "South"));
 
         System.out.println("You moved " + randomSteps + " steps towards "
                 + directions.get(direction) + ".");
-        if (canBattle()) {
-            new Battle(player);
+        boolean willBattle = gameModel.encounter();
+        if (willBattle) {
+            Battle battle = new Battle(player);
+            battle.fight();
         }
     }
 
@@ -64,7 +66,7 @@ public class Game {
         System.out.println("1. Restore your Pokémon's health\n2. Buy items\n0. Back");
         int inPokeCenter =  input.nextInt();
         if (inPokeCenter == 1) {
-            restorePokemonHealth();
+            pokemonCenter();
         }
         if (inPokeCenter == 2) {
             buyItems();
@@ -75,31 +77,15 @@ public class Game {
     // MODIFIES: player
     // EFFECTS: releases chosen pokemon from player's pokemon if opted
     private void yourPokemon() {
-        int i = 1;
-        for (Pokemon p : player.getPokemon()) {
-            System.out.println(i + ". " + p.getName() + ":\n\tLevel: " + p.getLevel() + "\n\tHP: " + p.getHP());
-            i++;
-        }
-        System.out.println("0. Back");
-        int index = input.nextInt() - 1;
-        if (index < player.getPokemon().size() && index >= 0) {
-            Pokemon thisPokemon = player.getPokemon().get(index);
-            if (player.getPokemon().contains(thisPokemon)) {
-                System.out.println("1. Release\n0. Back");
-                int pokemonToDo = input.nextInt();
-                if (pokemonToDo == 1) {
-                    player.releasePokemon(thisPokemon);
-                    System.out.println(thisPokemon.getName() + " has been removed from your Pokémon.");
-                }
-            }
-        }
+        getPokemonStats();
+        releasePokemon();
     }
 
     // MODIFIES: player
     // EFFECTS: sets player's all pokemon's health to default
-    private void restorePokemonHealth() {
+    private void pokemonCenter() {
+        gameModel.restorePokemonHealth();
         for (Pokemon p : player.getPokemon()) {
-            p.setHP();
             System.out.println(p.getName() + "'s HP: " + p.getHP());
         }
     }
@@ -125,8 +111,7 @@ public class Game {
             System.out.println("Amount: ");
             int buyPokeballs = input.nextInt();
             if (buyPokeballs * 100 <= player.getPokeDollars()) {
-                player.addPokeballs(buyPokeballs);
-                player.deductPokeDollars(buyPokeballs * 100);
+                gameModel.purchasePokeballs(buyPokeballs);
                 System.out.println("You received " + buyPokeballs + " PokéBalls.");
             } else {
                 System.err.println("Insufficient PokéDollars!");
@@ -138,27 +123,37 @@ public class Game {
         System.out.println("Do you want to save your game?\n\t1. Yes\n\t2. No");
         int save = input.nextInt();
         if (save == 1) {
-            save();
-        }
-    }
-
-    private void save() {
-        try {
-            jsonWriter.open();
-            jsonWriter.write(player);
-            jsonWriter.close();
-            System.out.println("Saved your game to " + JSON_STORE);
-        } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + JSON_STORE);
-        }
-    }
-
-    private boolean canBattle() {
-        for (Pokemon p : player.getPokemon()) {
-            if (p.getHP() > 0) {
-                return true;
+            try {
+                gameModel.writeToFile();
+                System.out.println("Game successfully saved!");
+            } catch (FileNotFoundException e) {
+                System.out.println("Unable to write to file");
             }
         }
-        return false;
+    }
+
+    private void getPokemonStats() {
+        int i = 1;
+        for (Pokemon p : player.getPokemon()) {
+            System.out.println(i + ". " + p.getName() + ":\n\tLevel: " + p.getLevel() + "\n\tHP: " + p.getHP()
+                    + "\n\tXP: " + p.getXP() + "\n\tAttacks: " + p.getAttackNames());
+            i++;
+        }
+        System.out.println("0. Back");
+    }
+
+    private void releasePokemon() {
+        int index = input.nextInt() - 1;
+        if (index < player.getPokemon().size() && index >= 0) {
+            Pokemon thisPokemon = player.getPokemon().get(index);
+            if (player.getPokemon().contains(thisPokemon)) {
+                System.out.println("1. Release\n0. Back");
+                int pokemonToDo = input.nextInt();
+                if (pokemonToDo == 1) {
+                    gameModel.releasePokemon(thisPokemon);
+                    System.out.println(thisPokemon.getName() + " has been removed from your Pokémon.");
+                }
+            }
+        }
     }
 }

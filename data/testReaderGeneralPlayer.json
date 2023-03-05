@@ -4,12 +4,14 @@
     {
       "level": 5,
       "name": "Bulbasaur",
-      "hp": 225
+      "hp": 225,
+      "xp": 2500
     },
     {
       "level": 8,
       "name": "Slowpoke",
-      "hp": 0
+      "hp": 0,
+      "xp": 6440
     }
   ],
   "pokedollars": 520

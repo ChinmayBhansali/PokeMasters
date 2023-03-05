@@ -32,7 +32,7 @@ class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    void writerEmptyWorkroomTest() {
+    void writerNewPlayerTest() {
         try {
             JsonWriter writer = new JsonWriter("./data/testWriterNewPlayer.json");
             writer.open();
@@ -50,7 +50,7 @@ class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    void writerGeneralWorkroomTest() {
+    void writerGeneralPlayerTest() {
         try {
             player.addPokeballs(5);
             player.addPokeDollars(500);
@@ -67,8 +67,8 @@ class JsonWriterTest extends JsonTest {
             assertEquals(500, player.getPokeDollars());
             ArrayList<Pokemon> pokemon = player.getPokemon();
             assertEquals(2, pokemon.size());
-            checkPokemon("Bulbasaur", 5, 225, pokemon.get(0));
-            checkPokemon("Pikachu", 8, 280, pokemon.get(1));
+            checkPokemon("Bulbasaur", 5, 225, 2500, pokemon.get(0));
+            checkPokemon("Pikachu", 8, 280, 6400, pokemon.get(1));
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");

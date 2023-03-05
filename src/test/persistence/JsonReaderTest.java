@@ -52,8 +52,8 @@ class JsonReaderTest extends JsonTest {
             assertEquals(520, player.getPokeDollars());
             ArrayList<Pokemon> pokemon = player.getPokemon();
             assertEquals(2, pokemon.size());
-            checkPokemon("Bulbasaur", 5, 225, pokemon.get(0));
-            checkPokemon("Slowpoke", 8, 0, pokemon.get(1));
+            checkPokemon("Bulbasaur", 5, 225, 2500, pokemon.get(0));
+            checkPokemon("Slowpoke", 8, 0, 6440, pokemon.get(1));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }

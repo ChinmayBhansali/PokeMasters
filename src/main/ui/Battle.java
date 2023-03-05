@@ -13,12 +13,11 @@ public class Battle {
 
     public Battle(Player player) {
         battleModel = new BattleModel(player);
-        battle();
     }
 
     // MODIFIES: this
     // EFFECTS: initiates battle, shuffles randomIndexList
-    private void battle() {
+    public void fight() {
         System.out.println("You encountered a wild " + battleModel.getWildPokemon().getName() + " of level "
                 + battleModel.getWildPokemon().getLevel() + "!");
 
@@ -88,15 +87,17 @@ public class Battle {
         System.out.println("1. Use\n0. Back");
         int usePokeball = input.nextInt();
         if (usePokeball == 1) {
-            boolean caught = battleModel.usePokeball();
-            if (caught) {
+            int caught = battleModel.usePokeball();
+            if (caught == 1) {
                 System.out.println("1. 2.. 3... Poof!");
                 System.out.println(battleModel.getWildPokemon().getName() + " was caught!");
                 System.out.println(battleModel.getWildPokemon().getName() + " has been added to your Pokédex.");
                 return true;
-            } else {
+            } else if (caught == 0) {
                 System.out.println("1. 2.. 3... Bam!");
                 System.out.println("Failed to catch " + battleModel.getWildPokemon().getName() + "!");
+            } else {
+                System.err.println("You cannot have more than 6 Pokémon in your team!");
             }
         }
         return false;
@@ -161,6 +162,16 @@ public class Battle {
         } else {
             System.out.println("Your " + battleModel.getActivePokemon().getName() + " dealt "
                     + whichAttack.getPower() + " damage to " + battleModel.getWildPokemon().getName());
+        }
+
+        boolean levelUp = battleModel.activePokemonGainXP(whichAttack);
+        System.out.println("Your " + battleModel.getActivePokemon().getName() + " gained " + whichAttack.getPower()
+                    + " XP. (" + (battleModel.getActivePokemon().getXP() - whichAttack.getPower()) + " -> "
+                    + battleModel.getActivePokemon().getXP() + ")");
+        if (levelUp) {
+            System.out.println("Your " + battleModel.getActivePokemon().getName() + " leveled up! ("
+                    + (battleModel.getActivePokemon().getLevel() - 1) + " -> "
+                    + battleModel.getActivePokemon().getLevel() + ")");
         }
     }
 }

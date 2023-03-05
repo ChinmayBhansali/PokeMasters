@@ -41,8 +41,10 @@ public class PlayerTest {
 
     @Test
     void usePokeballNoPokeballs() {
+        testPlayer.addPokeballs(5);
+        assertEquals(5, testPlayer.getPokeballs());
         testPlayer.usePokeball();
-        assertEquals(0, testPlayer.getPokeballs());
+        assertEquals(4, testPlayer.getPokeballs());
     }
 
     @Test

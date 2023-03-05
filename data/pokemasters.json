@@ -3,7 +3,8 @@
     "pokemon": [{
         "level": 5,
         "name": "Bulbasaur",
-        "hp": 225
+        "hp": 225,
+        "xp": 2500
     }],
     "pokedollars": 500
 }

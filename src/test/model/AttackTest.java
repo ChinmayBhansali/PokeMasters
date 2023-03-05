@@ -30,6 +30,9 @@ class AttackTest {
     private Attack a18;
     private Attack a19;
     private Attack a20;
+    private Attack a21;
+    private Attack a22;
+    private Attack a23;
 
     private ArrayList<Attack> attacks;
     private ArrayList<String> attackNames;
@@ -37,34 +40,38 @@ class AttackTest {
 
     @BeforeEach
     void setup() {
-        a1 = new Assurance();
-        a2 = new Astonish();
-        a3 = new Bind();
-        a4 = new Bite();
-        a5 = new BugBite();
-        a6 = new Confusion();
-        a7 = new Ember();
-        a8 = new FakeOut();
-        a9 = new Feint();
-        a10 = new Gust();
-        a11 = new Peck();
-        a12 = new QuickAttack();
-        a13 = new RapidSpin();
-        a14 = new RockThrow();
-        a15 = new Scratch();
-        a16 = new SmackDown();
-        a17 = new Tackle();
-        a18 = new ThunderShock();
-        a19 = new VineWhip();
-        a20 = new WaterGun();
+        a1 = new AncientPower();
+        a2 = new Assurance();
+        a3 = new Astonish();
+        a4 = new Bind();
+        a5 = new Bite();
+        a6 = new BugBite();
+        a7 = new Confusion();
+        a8 = new Ember();
+        a9 = new FakeOut();
+        a10 = new Feint();
+        a11 = new Gust();
+        a12 = new Peck();
+        a13 = new PsychoCut();
+        a14 = new QuickAttack();
+        a15 = new RapidSpin();
+        a16 = new RockThrow();
+        a17 = new Scratch();
+        a18 = new SmackDown();
+        a19 = new Swift();
+        a20 = new Tackle();
+        a21 = new ThunderShock();
+        a22 = new VineWhip();
+        a23 = new WaterGun();
 
         attacks = new ArrayList<>(Arrays.asList(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16,
-                a17, a18, a19, a20));
-        attackNames = new ArrayList<>(Arrays.asList("Assurance", "Astonish", "Bind", "Bite", "Bug Bite", "Confusion",
-                "Ember", "Fake Out", "Feint", "Gust", "Peck", "Quick Attack", "Rapid Spin", "Rock Throw", "Scratch",
-                "Smack Down", "Tackle", "Thunder Shock", "Vine Whip", "Water Gun"));
-        attackPowers = new ArrayList<>(Arrays.asList(60, 30, 15, 60, 60, 50, 40, 40, 30, 40, 35, 40, 50, 50, 40, 50,
-                40, 40, 45, 40));
+                a17, a18, a19, a20, a21, a22, a23));
+        attackNames = new ArrayList<>(Arrays.asList("Ancient Power", "Assurance", "Astonish", "Bind", "Bite",
+                "Bug Bite", "Confusion", "Ember", "Fake Out", "Feint", "Gust", "Peck", "Psycho Cut", "Quick Attack",
+                "Rapid Spin", "Rock Throw", "Scratch", "Smack Down", "Swift", "Tackle", "Thunder Shock", "Vine Whip",
+                "Water Gun"));
+        attackPowers = new ArrayList<>(Arrays.asList(60, 60, 30, 15, 60, 60, 50, 40, 40, 30, 40, 35, 70, 40, 50, 50, 40,
+                50, 60, 40, 40, 45, 40));
     }
 
     @Test

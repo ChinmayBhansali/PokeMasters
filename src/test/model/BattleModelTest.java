@@ -61,6 +61,27 @@ public class BattleModelTest {
     }
 
     @Test
+    void activePokemonGainXPNoLevelUpTest() {
+        Pokemon gainPokemonXP = testPlayer.getPokemon().get(0);
+        assertEquals(2500, gainPokemonXP.getXP());
+        boolean levelUp = testBM.activePokemonGainXP(testAttack);
+        assertEquals(2540, gainPokemonXP.getXP());
+        assertFalse(levelUp);
+    }
+
+    @Test
+    void activePokemonGainXPCanLevelUp() {
+        Pokemon gainPokemonXP = testPlayer.getPokemon().get(0);
+        assertEquals(2500, gainPokemonXP.getXP());
+        while (gainPokemonXP.getXP() < 3560) {
+            testBM.activePokemonGainXP(testAttack);
+        }
+        boolean levelUp = testBM.activePokemonGainXP(testAttack);
+        assertEquals(3620, gainPokemonXP.getXP());
+        assertTrue(levelUp);
+    }
+
+    @Test
     void switchPokemonTest() {
         assertEquals("Bulbasaur", testBM.getActivePokemon().getName());
         testBM.switchPokemon(1);
@@ -71,15 +92,15 @@ public class BattleModelTest {
     void usePokeballCatchFail() {
         int originalPokemon = testPlayer.getPokemon().size();
         assertEquals(5, testPlayer.getPokeballs());
-        boolean catchPokemon = testBM.usePokeball();
+        int catchPokemon = testBM.usePokeball();
         assertEquals(4, testPlayer.getPokeballs());
         assertEquals(originalPokemon, testPlayer.getPokemon().size());
-        assertFalse(catchPokemon);
+        assertEquals(0, catchPokemon);
         testBM.getWildPokemon().reduceHP(testBM.getWildPokemon().getHP() - (testBM.getWildPokemon().getHP() / 5));
         catchPokemon = testBM.usePokeball();
         assertEquals(3, testPlayer.getPokeballs());
         assertEquals(originalPokemon, testPlayer.getPokemon().size());
-        assertFalse(catchPokemon);
+        assertEquals(0, catchPokemon);
     }
 
     @Test
@@ -87,10 +108,10 @@ public class BattleModelTest {
         int originalPokemon = testPlayer.getPokemon().size();
         assertEquals(5, testPlayer.getPokeballs());
         testBM.getWildPokemon().reduceHP(testBM.getWildPokemon().getHP() - (testBM.getWildPokemon().getHP() / 5) + 1);
-        boolean catchPokemon = testBM.usePokeball();
+        int catchPokemon = testBM.usePokeball();
         assertEquals(4, testPlayer.getPokeballs());
         assertEquals(originalPokemon + 1, testPlayer.getPokemon().size());
-        assertTrue(catchPokemon);
+        assertEquals(1, catchPokemon);
     }
 
     @Test
@@ -102,10 +123,10 @@ public class BattleModelTest {
         int originalPokemon = testPlayer.getPokemon().size();
         assertEquals(5, testPlayer.getPokeballs());
         testBM.getWildPokemon().reduceHP(testBM.getWildPokemon().getHP() - (testBM.getWildPokemon().getHP() / 5) + 1);
-        boolean catchPokemon = testBM.usePokeball();
+        int catchPokemon = testBM.usePokeball();
         assertEquals(5, testPlayer.getPokeballs());
         assertEquals(originalPokemon, testPlayer.getPokemon().size());
-        assertFalse(catchPokemon);
+        assertEquals(2, catchPokemon);
     }
 
     @Test

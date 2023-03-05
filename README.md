@@ -16,13 +16,13 @@ You can walk on the map, find new Pokémon, fight with them, catch them, visit t
 Although you can only take 6 Pokémon in a battle with you, you can have as many Pokémon in storage as you want.
 
 But since this is not the full version of the game, there are limitations to what you can do in this game.
-For example, your gameplay to a certain number of Pokémon, you will not have any extra storage after your 6 Pokémon, and your Pokémon will not level up.
-Also, you will be able to save and reload your gameplay, and, maybe later, also create new ones or delete previous ones.
+For example, your gameplay is limited to a certain number of Pokémon, you will not have any extra storage after your 6 Pokémon, etc.
+Also, you will be able to save and reload your gameplay, or create new ones.
 
 We hope you enjoy this game!
 
 In this game:
-- as a player, when I start the game, I want to be given the option to load my previous game from file.
+- as a player, when I start the game, I want to be given the option to load my previous game from file or start a new one
 - as a player, I want to be able to choose my starter Pokémon
 - as a player, I want to be able to battle other Pokémon with my own
 - as a player in a battle, I want to be able to attack with my active Pokémon
@@ -30,8 +30,10 @@ In this game:
 - as a player in a battle, I want to be able to escape from the battle
 - as a player in a battle, I want to be able to use my bag (in this version, only Pokéballs) to try and catch wild Pokémon
 - as a player if I defeat a Pokémon, I want to be able to earn PokéDollars depending on the Pokémon's level
+- as a player, I want my Pokémon to gain experience from battles and level up accordingly
 - as a player, I want to be able to heal my Pokémon at PokéCenter
 - as a player, I want to buy items (in this version, only PokéBalls) at PokéCenter
+- as a player, I want to be able to look at the current statistics of my Pokémon
 - as a player, I want to be able to remove any Pokémon from my Pokémon
-- as a player, when I select the quit option, I want to be given the option to save my game or not.
 - as a player, I want to be able to quit my game
+- as a player, when I select the quit option, I want to be given the option to save my game or not

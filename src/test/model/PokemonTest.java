@@ -29,6 +29,7 @@ public class PokemonTest {
     private Pokemon p13;
     private Pokemon p14;
     private Pokemon p15;
+    private Pokemon p16;
 
     private Pokemon sp1;
     private Pokemon sp2;
@@ -48,27 +49,28 @@ public class PokemonTest {
         p4 = new Diglett(4);
         p5 = new Growlithe(6);
         p6 = new Meowth(7);
-        p7 = new Onix(8);
-        p8 = new Pidgey(9);
-        p9 = new Pikachu(10);
-        p10 = new Psyduck(1);
-        p11 = new Rattata(2);
-        p12 = new Slowpoke(3);
-        p13 = new Spearow(4);
-        p14 = new Squirtle(6);
-        p15 = new Weedle(7);
+        p7 = new Mewtwo(15);
+        p8 = new Onix(8);
+        p9 = new Pidgey(9);
+        p10 = new Pikachu(10);
+        p11 = new Psyduck(1);
+        p12 = new Rattata(2);
+        p13 = new Slowpoke(3);
+        p14 = new Spearow(4);
+        p15 = new Squirtle(6);
+        p16 = new Weedle(7);
 
         sp1 = new BulbasaurStarter();
         sp2 = new CharmanderStarter();
         sp3 = new SquirtleStarter();
         sp4 = new PikachuStarter();
 
-        pokemon = new ArrayList<>(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15));
+        pokemon = new ArrayList<>(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16));
         starterPokemon = new ArrayList<>(Arrays.asList(sp1, sp2, sp3, sp4));
 
         pokemonNames = new ArrayList<>(Arrays.asList("Bulbasaur", "Caterpie", "Charmander", "Diglett", "Growlithe",
-                "Meowth", "Onix", "Pidgey", "Pikachu", "Psyduck", "Rattata", "Slowpoke", "Spearow", "Squirtle",
-                "Weedle"));
+                "Meowth", "Mewtwo", "Onix", "Pidgey", "Pikachu", "Psyduck", "Rattata", "Slowpoke", "Spearow",
+                "Squirtle", "Weedle"));
     }
 
     @Test
@@ -92,11 +94,41 @@ public class PokemonTest {
     }
 
     @Test
+    void gainXPTest() {
+        assertEquals(100, p1.getXP());
+        p1.gainXP(150);
+        assertEquals(250, p1.getXP());
+    }
+
+    @Test
+    void noLevelUpTest() {
+        boolean levelUp = p1.levelUp();
+        assertFalse(levelUp);
+        p1.gainXP(299);
+        levelUp = p1.levelUp();
+        assertFalse(levelUp);
+    }
+
+    @Test
+    void levelUpTest() {
+        boolean levelUp = p1.levelUp();
+        assertFalse(levelUp);
+        p1.gainXP(300);
+        levelUp = p1.levelUp();
+        assertTrue(levelUp);
+    }
+
+    @Test
     void isHealthCriticalTest() {
         assertFalse(p1.isHealthCritical());
         p1.reduceHP(36 * p1.getLevel());
         assertFalse(p1.isHealthCritical());
         p1.reduceHP(1);
         assertTrue(p1.isHealthCritical());
+    }
+
+    @Test
+    void getAttacksTest() {
+        assertEquals("Tackle, Vine Whip", p1.getAttackNames());
     }
 }
