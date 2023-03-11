@@ -157,15 +157,27 @@ public class Battle {
             System.out.println("Your " + battleModel.getActivePokemon().getName() + " dealt "
                     + whichAttack.getPower() + " damage to " + battleModel.getWildPokemon().getName());
         }
+        activePokemonGainXP(whichAttack);
+    }
 
+    // EFFECTS: prints XP gained by active pokemon; level up if it leveled up; learned attack if it learned a new attack
+    private void activePokemonGainXP(Attack whichAttack) {
         boolean levelUp = battleModel.activePokemonGainXP(whichAttack);
         System.out.println("Your " + battleModel.getActivePokemon().getName() + " gained " + whichAttack.getPower()
-                    + " XP. (" + (battleModel.getActivePokemon().getXP() - whichAttack.getPower()) + " -> "
-                    + battleModel.getActivePokemon().getXP() + ")");
+                + " XP. (" + (battleModel.getActivePokemon().getXP() - whichAttack.getPower()) + " → "
+                + battleModel.getActivePokemon().getXP() + ")");
         if (levelUp) {
             System.out.println("Your " + battleModel.getActivePokemon().getName() + " leveled up! ("
-                    + (battleModel.getActivePokemon().getLevel() - 1) + " -> "
+                    + (battleModel.getActivePokemon().getLevel() - 1) + " → "
                     + battleModel.getActivePokemon().getLevel() + ")");
+
+            boolean learnAttack = battleModel.activePokemonLearnAttack();
+            if (learnAttack) {
+                System.out.println("Your " + battleModel.getActivePokemon().getName() + " learned "
+                        + battleModel.getActivePokemon().getAttacks().get(
+                        battleModel.getActivePokemon().getAttacks().size() - 1
+                ).getName() + "!");
+            }
         }
     }
 }

@@ -10,11 +10,22 @@ import java.util.Arrays;
 public class Caterpie extends Pokemon {
     public Caterpie(int level) {
         super("Caterpie", level);
-        this.attacks = new ArrayList<>(Arrays.asList(new Tackle(), new BugBite()));
     }
 
     @Override
     public void setHP() {
         this.hp = 45 * this.level;
+    }
+
+    @Override
+    public void setAttacks() {
+        attacks = new ArrayList<>(Arrays.asList(new Tackle()));
+        learnAttacks();
+    }
+
+    private void learnAttacks() {
+        if (level >= 9) {
+            attacks.add(new BugBite());
+        }
     }
 }

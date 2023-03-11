@@ -22,7 +22,7 @@ public class NewGame {
     // MODIFIES: player
     // EFFECTS: gives intro and asks if the user wants to start a new game or load previous one and runs accordingly
     public Player runNewGame() throws IOException {
-        System.out.println("Welcome to PokéMasters: The Unreal World of Pokémon\n");
+        System.out.println("Welcome to PokéMasters: The Unreal World of Pokémon");
         System.out.println("\n1. Start new game\n2. Load previous game");
         int game = input.nextInt();
         if (game == 1) {

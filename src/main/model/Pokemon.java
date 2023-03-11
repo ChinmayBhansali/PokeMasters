@@ -18,6 +18,7 @@ public abstract class Pokemon implements Writable {
     public Pokemon(String name, int level) {
         this.name = name;
         this.level = level;
+        setAttacks();
         setHP();
         maxHP = hp;
         xp = level * level * 100;
@@ -40,7 +41,7 @@ public abstract class Pokemon implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: if this pokemon has sufficient xp then adds 1 to level and returns true, otherwise returns false
+    // EFFECTS: if this pokemon has sufficient xp, adds 1 to level and returns true, otherwise returns false
     public boolean levelUp() {
         if (xp >= (level + 1) * (level + 1) * 100) {
             level++;
@@ -55,6 +56,8 @@ public abstract class Pokemon implements Writable {
     }
 
     public abstract void setHP();
+
+    public abstract void setAttacks();
 
     public String getName() {
         return name;

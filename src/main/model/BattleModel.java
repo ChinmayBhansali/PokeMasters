@@ -56,6 +56,17 @@ public class BattleModel {
         return levelUp;
     }
 
+    // MODIFIES: player
+    // EFFECTS: if active pokemon learns new attack then returns true, otherwise returns false
+    public boolean activePokemonLearnAttack() {
+        int originalAttacks = player.getPokemon().get(pokemonNumber).getAttacks().size();
+        player.getPokemon().get(pokemonNumber).setAttacks();
+        if (player.getPokemon().get(pokemonNumber).getAttacks().size() > originalAttacks) {
+            return true;
+        }
+        return false;
+    }
+
     // MODIFIES: this
     // EFFECTS: changes the pokemonNumber according to given integer
     public void switchPokemon(int pokemonNumber) {

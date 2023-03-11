@@ -1,10 +1,10 @@
 {
-    "pokeballs": 8,
+    "pokeballs": 5,
     "pokemon": [{
         "level": 5,
-        "name": "Charmander",
-        "hp": 195,
-        "xp": 2900
+        "name": "Squirtle",
+        "hp": 190,
+        "xp": 2540
     }],
-    "pokedollars": 250
+    "pokedollars": 500
 }

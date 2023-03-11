@@ -3,6 +3,8 @@ package model.pokemon;
 import model.Pokemon;
 import model.attacks.Bite;
 import model.attacks.Ember;
+import model.attacks.FireFang;
+import model.attacks.FlameWheel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,11 +12,28 @@ import java.util.Arrays;
 public class Growlithe extends Pokemon {
     public Growlithe(int level) {
         super("Growlithe", level);
-        this.attacks = new ArrayList<>(Arrays.asList(new Ember(), new Bite()));
     }
 
     @Override
     public void setHP() {
-        this.hp = 55 * this.level;
+        hp = 55 * level;
+    }
+
+    @Override
+    public void setAttacks() {
+        attacks = new ArrayList<>(Arrays.asList(new Ember()));
+        learnAttacks();
+    }
+
+    private void learnAttacks() {
+        if (level >= 8) {
+            attacks.add(new Bite());
+        }
+        if (level >= 12) {
+            attacks.add(new FlameWheel());
+        }
+        if (level >= 24) {
+            attacks.add(new FireFang());
+        }
     }
 }

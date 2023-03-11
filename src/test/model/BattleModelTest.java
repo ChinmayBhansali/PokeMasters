@@ -82,6 +82,23 @@ public class BattleModelTest {
     }
 
     @Test
+    void activePokemonLearnAttackTest() {
+        testPlayer.getPokemon().get(0).gainXP(11900);
+        assertEquals(2, testPlayer.getPokemon().get(0).getAttacks().size());
+        assertFalse(testBM.activePokemonLearnAttack());
+        testPlayer.getPokemon().get(0).levelUp();
+        testPlayer.getPokemon().get(0).levelUp();
+        testPlayer.getPokemon().get(0).levelUp();
+        testPlayer.getPokemon().get(0).levelUp();
+        testPlayer.getPokemon().get(0).levelUp();
+        testPlayer.getPokemon().get(0).levelUp();
+        testPlayer.getPokemon().get(0).levelUp();
+        boolean learAttack = testBM.activePokemonLearnAttack();
+        assertTrue(learAttack);
+        assertEquals(3, testPlayer.getPokemon().get(0).getAttacks().size());
+    }
+
+    @Test
     void switchPokemonTest() {
         assertEquals("Bulbasaur", testBM.getActivePokemon().getName());
         testBM.switchPokemon(1);

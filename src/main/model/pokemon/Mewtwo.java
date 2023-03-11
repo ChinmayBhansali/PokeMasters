@@ -12,12 +12,25 @@ import java.util.Arrays;
 public class Mewtwo extends Pokemon {
     public Mewtwo(int level) {
         super("Mewtwo", level);
-        this.attacks = new ArrayList<>(Arrays.asList(new Confusion(), new Swift(), new AncientPower(),
-                new PsychoCut()));
     }
 
     @Override
     public void setHP() {
-        this.hp = 106 * this.level;
+        hp = 106 * level;
+    }
+
+    @Override
+    public void setAttacks() {
+        attacks = new ArrayList<>(Arrays.asList(new Confusion(), new Swift()));
+        learnAttacks();
+    }
+
+    private void learnAttacks() {
+        if (level >= 8) {
+            attacks.add(new AncientPower());
+        }
+        if (level >= 16) {
+            attacks.add(new PsychoCut());
+        }
     }
 }

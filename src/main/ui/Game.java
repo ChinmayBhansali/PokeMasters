@@ -111,6 +111,7 @@ public class Game {
                 System.out.println("You received " + buyPokeballs + " PokéBalls.");
             } else {
                 System.err.println("Insufficient PokéDollars!");
+
             }
         }
     }

@@ -30,7 +30,7 @@ In this game:
 - as a player in a battle, I want to be able to escape from the battle
 - as a player in a battle, I want to be able to use my bag (in this version, only Pokéballs) to try and catch wild Pokémon
 - as a player if I defeat a Pokémon, I want to be able to earn PokéDollars depending on the Pokémon's level
-- as a player, I want my Pokémon to gain experience from battles and level up accordingly
+- as a player, I want my Pokémon to gain experience from battles, level up and learn new attacks accordingly
 - as a player, I want to be able to heal my Pokémon at PokéCenter
 - as a player, I want to buy items (in this version, only PokéBalls) at PokéCenter
 - as a player, I want to be able to look at the current statistics of my Pokémon

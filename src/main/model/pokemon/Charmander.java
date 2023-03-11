@@ -1,7 +1,9 @@
 package model.pokemon;
 
 import model.Pokemon;
+import model.attacks.DragonBreath;
 import model.attacks.Ember;
+import model.attacks.FireFang;
 import model.attacks.Scratch;
 
 import java.util.ArrayList;
@@ -10,11 +12,28 @@ import java.util.Arrays;
 public class Charmander extends Pokemon {
     public Charmander(int level) {
         super("Charmander", level);
-        this.attacks = new ArrayList<>(Arrays.asList(new Scratch(), new Ember()));
     }
 
     @Override
     public void setHP() {
-        this.hp = 39 * this.level;
+        hp = 39 * level;
+    }
+
+    @Override
+    public void setAttacks() {
+        attacks = new ArrayList<>(Arrays.asList(new Scratch()));
+        learnAttacks();
+    }
+
+    private void learnAttacks() {
+        if (level >= 4) {
+            attacks.add(new Ember());
+        }
+        if (level >= 12) {
+            attacks.add(new DragonBreath());
+        }
+        if (level >= 17) {
+            attacks.add(new FireFang());
+        }
     }
 }
