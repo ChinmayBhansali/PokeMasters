@@ -44,21 +44,21 @@ public class PokemonTest {
     @BeforeEach
     void setup() {
         p1 = new Bulbasaur(18);
-        p2 = new Caterpie(2);
+        p2 = new Caterpie(9);
         p3 = new Charmander(17);
         p4 = new Diglett(16);
         p5 = new Growlithe(26);
-        p6 = new Meowth(7);
-        p7 = new Mewtwo(15);
+        p6 = new Meowth(12);
+        p7 = new Mewtwo(20);
         p8 = new Onix(8);
         p9 = new Pidgey(21);
         p10 = new Pikachu(20);
-        p11 = new Psyduck(1);
+        p11 = new Psyduck(10);
         p12 = new Rattata(16);
         p13 = new Slowpoke(18);
-        p14 = new Spearow(4);
-        p15 = new Squirtle(6);
-        p16 = new Weedle(7);
+        p14 = new Spearow(15);
+        p15 = new Squirtle(12);
+        p16 = new Weedle(9);
 
         sp1 = new BulbasaurStarter();
         sp2 = new CharmanderStarter();
