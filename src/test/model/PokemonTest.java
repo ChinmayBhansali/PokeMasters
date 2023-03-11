@@ -43,19 +43,19 @@ public class PokemonTest {
 
     @BeforeEach
     void setup() {
-        p1 = new Bulbasaur(1);
+        p1 = new Bulbasaur(18);
         p2 = new Caterpie(2);
-        p3 = new Charmander(3);
-        p4 = new Diglett(4);
-        p5 = new Growlithe(6);
+        p3 = new Charmander(17);
+        p4 = new Diglett(16);
+        p5 = new Growlithe(26);
         p6 = new Meowth(7);
         p7 = new Mewtwo(15);
         p8 = new Onix(8);
-        p9 = new Pidgey(9);
-        p10 = new Pikachu(10);
+        p9 = new Pidgey(21);
+        p10 = new Pikachu(20);
         p11 = new Psyduck(1);
-        p12 = new Rattata(2);
-        p13 = new Slowpoke(3);
+        p12 = new Rattata(16);
+        p13 = new Slowpoke(18);
         p14 = new Spearow(4);
         p15 = new Squirtle(6);
         p16 = new Weedle(7);
@@ -83,7 +83,7 @@ public class PokemonTest {
         for (Pokemon p : starterPokemon) {
             assertEquals(5, p.getLevel());
         }
-        assertEquals(1, p1.getAttacks().size());
+        assertEquals(4, p1.getAttacks().size());
     }
 
     @Test
@@ -95,9 +95,9 @@ public class PokemonTest {
 
     @Test
     void gainXPTest() {
-        assertEquals(100, p1.getXP());
+        assertEquals(32400, p1.getXP());
         p1.gainXP(150);
-        assertEquals(250, p1.getXP());
+        assertEquals(32550, p1.getXP());
     }
 
     @Test
@@ -113,7 +113,7 @@ public class PokemonTest {
     void levelUpTest() {
         boolean levelUp = p1.levelUp();
         assertFalse(levelUp);
-        p1.gainXP(300);
+        p1.gainXP(3700);
         levelUp = p1.levelUp();
         assertTrue(levelUp);
     }
@@ -129,6 +129,6 @@ public class PokemonTest {
 
     @Test
     void getAttacksTest() {
-        assertEquals("Tackle", p1.getAttackNames());
+        assertEquals("Tackle, Vine Whip, Razor Leaf, Seed Bomb", p1.getAttackNames());
     }
 }
