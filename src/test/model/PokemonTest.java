@@ -88,9 +88,9 @@ public class PokemonTest {
 
     @Test
     void reduceHPTest() {
-        assertEquals(45 * p1.getLevel(), p1.getHP());
+        assertEquals(p1.getMaxHP(), p1.getHP());
         p1.reduceHP(40);
-        assertEquals(45 * p1.getLevel() - 40, p1.getHP());
+        assertEquals(p1.getMaxHP() - 40, p1.getHP());
     }
 
     @Test

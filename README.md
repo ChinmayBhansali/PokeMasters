@@ -37,3 +37,11 @@ In this game:
 - as a player, I want to be able to remove any Pokémon from my Pokémon
 - as a player, I want to be able to quit my game
 - as a player, when I select the quit option, I want to be given the option to save my game or not
+
+## Instructions for Grader
+
+- You can generate the first required action of adding multiple Pokémon to player's Pokémon by using a PokéBall from the bag during battle on the wild Pokémon when its HP is less than 20% 
+- You can generate the second required action of displaying all the already added Pokémon of the player by clicking on 'Your Pokémon' button on the main screen
+- You can locate my visual component by starting a New Game and then pressing Enter on the screen that shows up
+- You can save the game by quitting the game and choosing 'Yes' for saving the game 
+- You can reload the state of my application by loading previous game on the first screen that appears

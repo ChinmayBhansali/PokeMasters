@@ -89,6 +89,10 @@ public abstract class Pokemon implements Writable {
         return xp;
     }
 
+    public int getMaxHP() {
+        return maxHP;
+    }
+
 //    public int getSpeed() {
 //        return this.speed;
 //    }
