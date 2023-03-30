@@ -15,13 +15,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import static model.GameModel.STARTING_POKEBALLS;
-import static ui.Game.JSON_STORE;
 
 public class GameGraphics extends JFrame implements ActionListener {
     public static final int FRAME_WIDTH = 1000;
     public static final int FRAME_HEIGHT = 700;
     public static final Font NORMAL_TEXT_FONT = new Font("Times New Roman", Font.PLAIN, 15);
     public static final BorderLayout LAYOUT = new BorderLayout();
+    public static final String JSON_STORE = "./data/pokemasters.json";
 
     private final GameModel gameModel;
     private BattleModel battleModel;
@@ -224,6 +224,12 @@ public class GameGraphics extends JFrame implements ActionListener {
     private void mainFrame() {
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
+        ImageIcon image = new ImageIcon("./data/pokemonImages/mewtwo.png");
+        JLabel mainScreenImage = new JLabel();
+        mainScreenImage.setIcon(image);
+        mainScreenImage.setHorizontalAlignment(JLabel.CENTER);
+        mainScreenImage.setBounds(100, 25, 800, 350);
+
         JPanel mainPanel = new JPanel(null);
         mainPanel.setBounds(100, 400, 800, 300);
         mainPanel.add(mainFrameButton("Move", 75, 25));
@@ -231,6 +237,7 @@ public class GameGraphics extends JFrame implements ActionListener {
         mainPanel.add(mainFrameButton("Your Pokémon", 75, 175));
         mainPanel.add(mainFrameButton("Quit", 475, 175));
 
+        add(mainScreenImage);
         add(mainPanel);
     }
 
@@ -243,9 +250,15 @@ public class GameGraphics extends JFrame implements ActionListener {
                 + "Your " + battleModel.getActivePokemon().getName() + "'s HP: "
                 + battleModel.getActivePokemon().getHP() + "\n" + battleModel.getWildPokemon().getName() + "'s HP: "
                 + battleModel.getWildPokemon().getHP());
-        encounterText.setBounds(100, 100, 800, 200);
+        encounterText.setBounds(100, 100, 400, 200);
         encounterText.setFont(NORMAL_TEXT_FONT);
         encounterText.setEditable(false);
+
+        ImageIcon image = new ImageIcon("./data/pokemonImages/" + battleModel.getWildPokemon().getName() + ".png");
+        JLabel wildPokemonImage = new JLabel();
+        wildPokemonImage.setIcon(image);
+        wildPokemonImage.setHorizontalAlignment(JLabel.CENTER);
+        wildPokemonImage.setBounds(500, 0, 400, 400);
 
         JPanel encounterOptionsPanel = new JPanel(null);
         encounterOptionsPanel.setBounds(100, 400, 800, 300);
@@ -255,6 +268,7 @@ public class GameGraphics extends JFrame implements ActionListener {
         encounterOptionsPanel.add(mainFrameButton("Escape", 475, 175));
 
         add(encounterText);
+        add(wildPokemonImage);
         add(encounterOptionsPanel);
     }
 
@@ -328,7 +342,8 @@ public class GameGraphics extends JFrame implements ActionListener {
                 + battleModel.getActivePokemon().getHP() + "/" + battleModel.getActivePokemon().getMaxHP() + "\n"
                 + battleModel.getWildPokemon().getName() + "'s HP: " + battleModel.getWildPokemon().getHP() + "/"
                 + battleModel.getWildPokemon().getMaxHP() + "\nYour " + battleModel.getActivePokemon().getName()
-                + " used " + attack.getName());
+                + " used " + attack.getName() + "\nYour " + battleModel.getActivePokemon().getName() + " dealt "
+                + attack.getPower() + " damage to " + battleModel.getWildPokemon().getName());
         activePokemonGainXP(attack, continueText);
         continueText.setBounds(100, 100, 800, 200);
         continueText.setFont(NORMAL_TEXT_FONT);

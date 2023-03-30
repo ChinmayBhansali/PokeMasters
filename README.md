@@ -42,6 +42,6 @@ In this game:
 
 - You can generate the first required action of adding multiple Pokémon to player's Pokémon by using a PokéBall from the bag during battle on the wild Pokémon when its HP is less than 20% 
 - You can generate the second required action of displaying all the already added Pokémon of the player by clicking on 'Your Pokémon' button on the main screen
-- You can locate my visual component by starting a New Game and then pressing Enter on the screen that shows up
+- You can locate my visual components when you choose your starter Pokémon in a New Game, on the main screen of the game and whenever you encounter a wild Pokémon when you Move
 - You can save the game by quitting the game and choosing 'Yes' for saving the game 
 - You can reload the state of my application by loading previous game on the first screen that appears
