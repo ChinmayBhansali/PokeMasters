@@ -23,6 +23,11 @@ public class Weedle extends Pokemon {
         learnAttacks();
     }
 
+    @Override
+    protected void setPokedexNumber() {
+        pokedexNumber = "013";
+    }
+
     private void learnAttacks() {
         if (level >= 9) {
             attacks.add(new BugBite());

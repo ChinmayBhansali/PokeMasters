@@ -25,6 +25,11 @@ public class Squirtle extends Pokemon {
         learnAttacks();
     }
 
+    @Override
+    protected void setPokedexNumber() {
+        pokedexNumber = "007";
+    }
+
     private void learnAttacks() {
         if (level >= 3) {
             attacks.add(new WaterGun());

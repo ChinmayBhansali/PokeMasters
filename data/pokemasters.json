@@ -3,7 +3,7 @@
     "pokemon": [{
         "level": 5,
         "name": "Squirtle",
-        "hp": 190,
+        "hp": 205,
         "xp": 2540
     }],
     "pokedollars": 500

@@ -45,3 +45,79 @@ In this game:
 - You can locate my visual components when you choose your starter Pokémon in a New Game, on the main screen of the game and whenever you encounter a wild Pokémon when you Move
 - You can save the game by quitting the game and choosing 'Yes' for saving the game 
 - You can reload the state of my application by loading previous game on the first screen that appears
+
+## Phase 4: Task 2
+
+Tue Apr 11 15:18:17 PDT 2023
+created new player: model.Player@1ee807c6
+
+
+Tue Apr 11 15:18:21 PDT 2023
+Added model.pokemon.starters.SquirtleStarter@4fe51452 to model.Player@1ee807c6's pokémon
+
+
+Tue Apr 11 15:18:21 PDT 2023
+Added 5 Pokéballs to model.Player@1ee807c6's Pokéballs
+
+
+Tue Apr 11 15:18:21 PDT 2023
+Added 500 PokéDollars to model.Player@1ee807c6's PokéDollars
+
+
+Tue Apr 11 15:18:24 PDT 2023
+model.Player@1ee807c6 started a new battle against a wild model.pokemon.Diglett@65f27ffc
+
+
+Tue Apr 11 15:18:28 PDT 2023
+Reduced model.pokemon.Diglett@65f27ffc's HP by 40 points
+
+
+Tue Apr 11 15:18:28 PDT 2023
+Reduced model.pokemon.starters.SquirtleStarter@4fe51452's HP by 20 points
+
+
+Tue Apr 11 15:18:28 PDT 2023
+Increased model.pokemon.starters.SquirtleStarter@4fe51452's HP by 40 points
+
+
+Tue Apr 11 15:18:29 PDT 2023
+Reduced model.pokemon.Diglett@65f27ffc's HP by 40 points
+
+
+Tue Apr 11 15:18:29 PDT 2023
+Reduced model.pokemon.starters.SquirtleStarter@4fe51452's HP by 20 points
+
+
+Tue Apr 11 15:18:29 PDT 2023
+Increased model.pokemon.starters.SquirtleStarter@4fe51452's HP by 40 points
+
+
+Tue Apr 11 15:18:30 PDT 2023
+Reduced model.pokemon.Diglett@65f27ffc's HP by 40 points
+
+
+Tue Apr 11 15:18:30 PDT 2023
+Reduced model.pokemon.starters.SquirtleStarter@4fe51452's HP by 20 points
+
+
+Tue Apr 11 15:18:30 PDT 2023
+Increased model.pokemon.starters.SquirtleStarter@4fe51452's HP by 40 points
+
+
+Tue Apr 11 15:18:33 PDT 2023
+model.Player@1ee807c6 used a Pokéball
+
+
+Tue Apr 11 15:18:33 PDT 2023
+Added model.pokemon.Diglett@65f27ffc to model.Player@1ee807c6's pokémon
+
+
+## Phase 4: Task 3
+Since I do not modify any of the attack objects, I would make them static. My current project has way too many classes. 
+All the pokémon classes could be reduced to only a single class. My GameGraphics class has bad cohesion; it does way too 
+many things for the game, I would split it into two, or maybe even more, classes. There are some methods in different 
+classes that do multiple tasks, I would split every class to do one and only one task. My current code does not allow 
+much flexibility for any future advancements in it; I would create hash sets for database of all the pokemon and attacks 
+which would allow me to enter new data without worrying about the order. Currently, I am referring every picture by the 
+pokémon's name, I would like to introduce a new field (Pokédex Number) which will make it easy to distinguish between 
+all the pokémon.

@@ -25,6 +25,11 @@ public class Psyduck extends Pokemon {
         learnAttacks();
     }
 
+    @Override
+    protected void setPokedexNumber() {
+        pokedexNumber = "054";
+    }
+
     private void learnAttacks() {
         if (level >= 3) {
             attacks.add(new WaterGun());

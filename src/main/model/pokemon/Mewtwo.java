@@ -25,6 +25,11 @@ public class Mewtwo extends Pokemon {
         learnAttacks();
     }
 
+    @Override
+    protected void setPokedexNumber() {
+        pokedexNumber = "150";
+    }
+
     private void learnAttacks() {
         if (level >= 8) {
             attacks.add(new AncientPower());

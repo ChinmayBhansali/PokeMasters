@@ -23,6 +23,11 @@ public class Caterpie extends Pokemon {
         learnAttacks();
     }
 
+    @Override
+    protected void setPokedexNumber() {
+        pokedexNumber = "010";
+    }
+
     private void learnAttacks() {
         if (level >= 9) {
             attacks.add(new BugBite());

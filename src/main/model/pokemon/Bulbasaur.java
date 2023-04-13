@@ -25,6 +25,11 @@ public class Bulbasaur extends Pokemon {
         learnAttacks();
     }
 
+    @Override
+    protected void setPokedexNumber() {
+        pokedexNumber = "001";
+    }
+
     private void learnAttacks() {
         if (this.level >= 3) {
             attacks.add(new VineWhip());

@@ -25,6 +25,11 @@ public class Diglett extends Pokemon {
         learnAttacks();
     }
 
+    @Override
+    protected void setPokedexNumber() {
+        pokedexNumber = "050";
+    }
+
     private void learnAttacks() {
         if (level >= 8) {
             attacks.add(new Astonish());

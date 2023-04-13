@@ -25,6 +25,11 @@ public class Growlithe extends Pokemon {
         learnAttacks();
     }
 
+    @Override
+    protected void setPokedexNumber() {
+        pokedexNumber = "058";
+    }
+
     private void learnAttacks() {
         if (level >= 8) {
             attacks.add(new Bite());

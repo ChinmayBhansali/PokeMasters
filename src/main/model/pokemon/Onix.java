@@ -22,6 +22,11 @@ public class Onix extends Pokemon {
         learnAttacks();
     }
 
+    @Override
+    protected void setPokedexNumber() {
+        pokedexNumber = "095";
+    }
+
     private void learnAttacks() {
         if (level >= 4) {
             attacks.add(new SmackDown());

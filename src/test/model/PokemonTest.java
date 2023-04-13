@@ -83,6 +83,7 @@ public class PokemonTest {
         for (Pokemon p : starterPokemon) {
             assertEquals(5, p.getLevel());
         }
+        assertEquals("001", p1.getPokedexNumber());
         assertEquals(4, p1.getAttacks().size());
     }
 

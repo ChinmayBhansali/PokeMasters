@@ -25,6 +25,11 @@ public class Slowpoke extends Pokemon {
         learnAttacks();
     }
 
+    @Override
+    protected void setPokedexNumber() {
+        pokedexNumber = "079";
+    }
+
     private void learnAttacks() {
         if (level >= 6) {
             attacks.add(new WaterGun());

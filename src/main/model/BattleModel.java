@@ -15,9 +15,10 @@ public class BattleModel {
 
     public BattleModel(Player player) {
         this.player = player;
-        this.wildPokemon = getRandomPokemon();
+        wildPokemon = getRandomPokemon();
         pokemonNumber = 0;
         random = new Random();
+        EventLog.getInstance().logEvent(new Event(player + " started a new battle against a wild " + wildPokemon));
     }
 
     // MODIFIES: wildPokemon

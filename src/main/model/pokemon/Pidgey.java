@@ -25,6 +25,11 @@ public class Pidgey extends Pokemon {
         learnAttacks();
     }
 
+    @Override
+    protected void setPokedexNumber() {
+        pokedexNumber = "016";
+    }
+
     private void learnAttacks() {
         if (level >= 9) {
             attacks.add(new Gust());

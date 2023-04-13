@@ -25,6 +25,11 @@ public class Charmander extends Pokemon {
         learnAttacks();
     }
 
+    @Override
+    protected void setPokedexNumber() {
+        pokedexNumber = "004";
+    }
+
     private void learnAttacks() {
         if (level >= 4) {
             attacks.add(new Ember());

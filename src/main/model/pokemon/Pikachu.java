@@ -25,6 +25,11 @@ public class Pikachu extends Pokemon {
         learnAttacks();
     }
 
+    @Override
+    protected void setPokedexNumber() {
+        pokedexNumber = "025";
+    }
+
     private void learnAttacks() {
         if (level >= 16) {
             attacks.add(new Feint());

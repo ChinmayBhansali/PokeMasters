@@ -13,6 +13,7 @@ public abstract class Pokemon implements Writable {
     protected ArrayList<Attack> attacks;
     private int xp;
     private int maxHP;
+    protected String pokedexNumber;
 //    protected int speed;
 
     public Pokemon(String name, int level) {
@@ -20,6 +21,7 @@ public abstract class Pokemon implements Writable {
         this.level = level;
         setAttacks();
         setHP();
+        setPokedexNumber();
         maxHP = hp;
         xp = level * level * 100;
 //        setSpeed();
@@ -32,12 +34,14 @@ public abstract class Pokemon implements Writable {
     // EFFECTS: reduces this.hp by given healthPoints
     public void reduceHP(int healthPoints) {
         hp -= healthPoints;
+        EventLog.getInstance().logEvent(new Event("Reduced " + this + "'s HP by " + healthPoints + " points"));
     }
 
     // MODIFIES: this
     // EFFECTS: adds exp to this.xp
     public void gainXP(int exp) {
         xp += exp;
+        EventLog.getInstance().logEvent(new Event("Increased " + this + "'s HP by " + exp + " points"));
     }
 
     // MODIFIES: this
@@ -45,6 +49,7 @@ public abstract class Pokemon implements Writable {
     public boolean levelUp() {
         if (xp >= (level + 1) * (level + 1) * 100) {
             level++;
+            EventLog.getInstance().logEvent(new Event(this + " leveled up"));
             return true;
         }
         return false;
@@ -58,6 +63,8 @@ public abstract class Pokemon implements Writable {
     public abstract void setHP();
 
     public abstract void setAttacks();
+
+    protected abstract void setPokedexNumber();
 
     public String getName() {
         return name;
@@ -91,6 +98,10 @@ public abstract class Pokemon implements Writable {
 
     public int getMaxHP() {
         return maxHP;
+    }
+
+    public String getPokedexNumber() {
+        return pokedexNumber;
     }
 
 //    public int getSpeed() {

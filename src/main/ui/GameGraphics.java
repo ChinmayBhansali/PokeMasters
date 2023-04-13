@@ -1,6 +1,7 @@
 package ui;
 
 import model.*;
+import model.Event;
 
 import javax.swing.*;
 import java.awt.*;
@@ -310,7 +311,7 @@ public class GameGraphics extends JFrame implements ActionListener {
     // EFFECTS: creates a frame for when the player loses the battle
     private void battleLostFrame(Attack attack) {
         JTextArea lostText = new JTextArea("Your " + battleModel.getActivePokemon().getName() + " used "
-                + attack.getName() + "\nYour " + battleModel.getActivePokemon().getName() + " wad defeated.");
+                + attack.getName() + "\nYour " + battleModel.getActivePokemon().getName() + " was defeated.");
         activePokemonGainXP(attack, lostText);
         lostText.append(" [Press Enter to continue]");
         lostText.setBounds(100, 100, 800, 200);
@@ -337,7 +338,7 @@ public class GameGraphics extends JFrame implements ActionListener {
     }
 
     // EFFECTS: creates the frame for continued battle
-    private void battleContinueFrame(Attack attack) {
+    private void battleContinueFrame(Attack attack, Attack wildPokemonAttack) {
         JTextArea continueText = new JTextArea("Your " + battleModel.getActivePokemon().getName() + "'s HP: "
                 + battleModel.getActivePokemon().getHP() + "/" + battleModel.getActivePokemon().getMaxHP() + "\n"
                 + battleModel.getWildPokemon().getName() + "'s HP: " + battleModel.getWildPokemon().getHP() + "/"
@@ -345,6 +346,7 @@ public class GameGraphics extends JFrame implements ActionListener {
                 + " used " + attack.getName() + "\nYour " + battleModel.getActivePokemon().getName() + " dealt "
                 + attack.getPower() + " damage to " + battleModel.getWildPokemon().getName());
         activePokemonGainXP(attack, continueText);
+        wildPokemonAttackText(continueText, wildPokemonAttack);
         continueText.setBounds(100, 100, 800, 200);
         continueText.setFont(NORMAL_TEXT_FONT);
         continueText.setEditable(false);
@@ -360,14 +362,30 @@ public class GameGraphics extends JFrame implements ActionListener {
         add(encounterOptionsPanel);
     }
 
+    private void wildPokemonAttackText(JTextArea continueText, Attack wildPokemonAttack) {
+        int originalHP = battleModel.getActivePokemon().getHP();
+
+        continueText.append("\n" + battleModel.getWildPokemon().getName() + " used " + wildPokemonAttack.getName()
+                + "\n");
+
+        if (battleModel.getActivePokemon().getHP() == 0) {
+            continueText.append(battleModel.getWildPokemon().getName() + " dealt " + originalHP + " damage to your "
+                    + battleModel.getActivePokemon().getName() + "\nYour "
+                    + battleModel.getActivePokemon().getName() + " fainted\n");
+        } else {
+            continueText.append(battleModel.getWildPokemon().getName() + " dealt " + wildPokemonAttack.getPower()
+                    + " damage to your " + battleModel.getActivePokemon().getName());
+        }
+    }
+
     // EFFECTS: decides whether the battle is lost or not and call method accordingly
     private void battleContinue(Attack attack) {
-        battleModel.wildPokemonAttack();
+        Attack wildPokemonAttack = battleModel.wildPokemonAttack();
 
         if (battleModel.getActivePokemon().getHP() == 0) {
             battleLostFrame(attack);
         } else {
-            battleContinueFrame(attack);
+            battleContinueFrame(attack, wildPokemonAttack);
         }
     }
 
@@ -674,11 +692,13 @@ public class GameGraphics extends JFrame implements ActionListener {
             } case "Yes": {
                 try {
                     gameModel.writeToFile();
+                    printLog();
+                    System.exit(0);
                 } catch (FileNotFoundException ex) {
                     System.err.println("Unable to save your game.");
                 }
-                System.exit(0);
             } case "No": {
+                printLog();
                 System.exit(0);
             }
         }
@@ -688,5 +708,11 @@ public class GameGraphics extends JFrame implements ActionListener {
     private void centerOnScreen() {
         Dimension scrn = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation((scrn.width - getWidth()) / 2, (scrn.height - getHeight()) / 2);
+    }
+
+    private void printLog() {
+        for (Event next : EventLog.getInstance()) {
+            System.out.println(next.toString() + "\n\n");
+        }
     }
 }
