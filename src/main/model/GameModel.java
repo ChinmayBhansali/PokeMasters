@@ -46,7 +46,7 @@ public class GameModel {
             player.addPokemon(starterPokemon.get(index));
             return starterPokemon.get(index).getName();
         } else if (index == 294) {
-            player.addPokemon(new Mewtwo(20));
+            player.addPokemon(new Mewtwo(60));
         } else {
             player.addPokemon(new PikachuStarter());
         }
