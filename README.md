@@ -14,9 +14,6 @@ This is a role playing game (RPG for short) especially for Pokémon fans (and al
 The more you spend time with your Pokémon and the more you fight alongside them, the more they bond with you and the faster they (and *you* too) grow.
 You can walk on the map, find new Pokémon, fight with them, catch them, visit the *PokéCenter*, etc.
 Although you can only take 6 Pokémon in a battle with you, you can have as many Pokémon in storage as you want.
-
-But since this is not the full version of the game, there are limitations to what you can do in this game.
-For example, your gameplay is limited to a certain number of Pokémon, you will not have any extra storage after your 6 Pokémon, etc.
 Also, you will be able to save and reload your gameplay, or create new ones.
 
 We hope you enjoy this game!
